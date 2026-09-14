@@ -1,1 +1,280 @@
-1
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="한국공학대학교 일학습병행 공동훈련센터 VOC 지식포털" />
+  <meta name="theme-color" content="#1758A8" />
+  <title>공동훈련센터 VOC | 한국공학대학교</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#mainContent">본문 바로가기</a>
+
+  <div class="brand-line" aria-hidden="true">
+    <span></span><span></span><span></span>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#mainContent" aria-label="한국공학대학교 공동훈련센터 VOC 홈">
+        <div class="brand-symbol" aria-hidden="true">
+          <span>K</span>
+        </div>
+
+        <div class="brand-copy">
+          <div class="university-name">
+            <strong>한국공학대학교</strong>
+            <small>KOREA TECH UNIVERSITY</small>
+          </div>
+          <div class="brand-divider" aria-hidden="true"></div>
+          <div class="portal-name">일학습병행 공동훈련센터 <b>지식포털</b></div>
+        </div>
+      </a>
+
+      <nav class="top-nav" aria-label="주요 메뉴">
+        <a class="active" href="#vocList">VOC</a>
+        <a href="#dashboard">현황</a>
+        <a href="#guide">이용안내</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="mainContent">
+    <section class="hero">
+      <div class="hero-grid-pattern" aria-hidden="true"></div>
+
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <span class="hero-eyebrow">KOREA TECH UNIVERSITY · WORK-LEARNING DUAL SYSTEM</span>
+          <h1>공동훈련센터 <em>VOC</em></h1>
+          <p class="hero-lead">
+            현장에서 자주 묻는 질문과 개선 의견을 한눈에.<br>
+            더 나은 일학습병행 운영을 위한 지식을 함께 축적합니다.
+          </p>
+
+          <div class="hero-chips" aria-label="주요 기능">
+            <span>통합검색</span>
+            <span>사업별 조회</span>
+            <span>처리상태 관리</span>
+          </div>
+        </div>
+
+        <div class="tino-zone" aria-label="한국공학대학교 마스코트 티노">
+          <div class="speech-bubble">
+            <strong>현장의 질문이</strong>
+            <span>더 나은 제도를 만듭니다.</span>
+          </div>
+
+          <div class="tino-halo" aria-hidden="true"></div>
+          <img class="tino-img" src="images/tino.png" alt="한국공학대학교 마스코트 티노" />
+          <div class="tino-name">TINO</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="dashboard" class="dashboard-section">
+      <div class="container">
+        <div class="stats-grid" aria-label="VOC 현황">
+          <article class="stat-card stat-total">
+            <div class="stat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M10 13h6M10 17h6"/></svg>
+            </div>
+            <div>
+              <p>누적 건의사항</p>
+              <strong id="totalCount">0건</strong>
+            </div>
+          </article>
+
+          <article class="stat-card stat-complete">
+            <div class="stat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.6 2.7L16.5 9"/></svg>
+            </div>
+            <div>
+              <p>완료 건수</p>
+              <strong id="completedCount">0건</strong>
+            </div>
+          </article>
+
+          <article class="stat-card stat-progress">
+            <div class="stat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            </div>
+            <div>
+              <p>진행·검토 건수</p>
+              <strong id="progressCount">0건</strong>
+            </div>
+          </article>
+
+          <article class="stat-card stat-rate">
+            <div class="stat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M5 19V9M12 19V5M19 19v-7"/><path d="M3 19h18"/></svg>
+            </div>
+            <div>
+              <p>완료율</p>
+              <strong id="completionRate">0%</strong>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="filter-section">
+      <div class="container">
+        <div class="filter-panel">
+          <div class="filter-title-row">
+            <div>
+              <span class="mini-label">VOC SEARCH</span>
+              <h2>질의·건의 통합 검색</h2>
+            </div>
+            <button id="resetButton" class="reset-button" type="button">
+              <span aria-hidden="true">↻</span> 검색 초기화
+            </button>
+          </div>
+
+          <div class="search-row">
+            <label class="search-box" for="keywordInput">
+              <svg class="search-svg" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="11" cy="11" r="7"></circle>
+                <path d="m16.5 16.5 4 4"></path>
+              </svg>
+              <input
+                id="keywordInput"
+                type="search"
+                placeholder="질문, 답변, 사업명, 분야, 근거자료를 검색하세요."
+                autocomplete="off"
+              />
+            </label>
+          </div>
+
+          <div class="filters-grid">
+            <label>
+              <span>연도</span>
+              <select id="yearFilter">
+                <option value="">전체</option>
+              </select>
+            </label>
+
+            <label>
+              <span>사업</span>
+              <select id="businessFilter">
+                <option value="">전체</option>
+              </select>
+            </label>
+
+            <label>
+              <span>유형</span>
+              <select id="typeFilter">
+                <option value="">전체</option>
+              </select>
+            </label>
+
+            <label>
+              <span>분야</span>
+              <select id="categoryFilter">
+                <option value="">전체</option>
+              </select>
+            </label>
+
+            <label>
+              <span>상태</span>
+              <select id="statusFilter">
+                <option value="">전체</option>
+              </select>
+            </label>
+
+            <label>
+              <span>정렬</span>
+              <select id="sortFilter">
+                <option value="latest">최신순</option>
+                <option value="oldest">오래된순</option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="vocList" class="section voc-section">
+      <div class="container">
+        <div class="list-header">
+          <div>
+            <span class="mini-label">KNOWLEDGE ARCHIVE</span>
+            <h2>등록된 VOC</h2>
+            <p id="resultSummary" class="result-summary">총 0건</p>
+          </div>
+
+          <div class="list-guide">
+            <span class="guide-dot"></span>
+            질문을 클릭하면 답변과 근거를 확인할 수 있습니다.
+          </div>
+        </div>
+
+        <div id="vocContainer" class="voc-list" aria-live="polite"></div>
+
+        <div id="emptyState" class="empty-state" hidden>
+          <div class="empty-icon">?</div>
+          <h3>검색 결과가 없습니다.</h3>
+          <p>검색어 또는 필터 조건을 변경해보세요.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="guide" class="section guide-section">
+      <div class="container guide-layout">
+        <div class="guide-title">
+          <span class="mini-label">PUBLIC DATA GUIDE</span>
+          <h2>공개형 VOC<br>운영 원칙</h2>
+          <p>업무 지식은 공유하되 개인정보와 민감정보는 공개하지 않습니다.</p>
+        </div>
+
+        <div class="guide-card">
+          <div class="guide-number">01</div>
+          <h3>개인정보 비공개</h3>
+          <p>개인명, 연락처, 이메일, 주민등록번호 등 식별 가능한 개인정보는 등록하지 않습니다.</p>
+        </div>
+
+        <div class="guide-card">
+          <div class="guide-number">02</div>
+          <h3>질의 내용 일반화</h3>
+          <p>기업명·기관명은 필요한 경우 익명화하고, 재사용 가능한 업무지식 중심으로 정리합니다.</p>
+        </div>
+
+        <div class="guide-card">
+          <div class="guide-number">03</div>
+          <h3>최신 근거 관리</h3>
+          <p>규정·지침이 개정되면 답변과 근거자료도 함께 점검하여 최신 상태를 유지합니다.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <div class="footer-symbol">K</div>
+        <div>
+          <strong>한국공학대학교</strong>
+          <span>일학습병행 공동훈련센터</span>
+        </div>
+      </div>
+
+      <div class="footer-copy">
+        <p>공동훈련센터 VOC 지식관리 페이지</p>
+        <small>© Korea Tech University. All rights reserved.</small>
+      </div>
+
+      <div class="footer-accent" aria-hidden="true">
+        <i></i><i></i><i></i>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>
