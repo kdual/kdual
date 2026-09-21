@@ -1,12 +1,30 @@
 {
   "ok": true,
-  "syncedAt": "2026-09-21T01:26:29.475341+00:00",
+  "syncedAt": "2026-09-21T01:32:31.375131+00:00",
   "items": [
+    {
+      "id": "sample-07",
+      "category": "이용 안내",
+      "question": "테스트용",
+      "answer": "테스트",
+      "pinned": true,
+      "updated": "9/20/2026",
+      "link": ""
+    },
     {
       "id": "sample-08",
       "category": "행사안내",
       "question": "행사안내1",
       "answer": "행사안내2",
+      "pinned": true,
+      "updated": "9/22/2026",
+      "link": ""
+    },
+    {
+      "id": "sample-09",
+      "category": "테스트분류",
+      "question": "테스트질문",
+      "answer": "테스트답변",
       "pinned": true,
       "updated": "9/22/2026",
       "link": ""
