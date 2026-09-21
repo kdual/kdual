@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Fetch and validate FAQ data
         env:
@@ -30,17 +30,40 @@ jobs:
           import json
           import os
           import pathlib
+          import time
+          import urllib.error
           import urllib.parse
           import urllib.request
           from datetime import datetime, timezone
 
           target = pathlib.Path("data/faq.json")
           url = os.environ["FAQ_API_URL"]
-          query = urllib.parse.urlencode({"source": "github-actions", "_": int(datetime.now().timestamp())})
-          request = urllib.request.Request(f"{url}?{query}", headers={"User-Agent": "kdual-faq-sync/1.0"})
+          payload = None
 
-          with urllib.request.urlopen(request, timeout=60) as response:
-              payload = json.load(response)
+          for attempt in range(1, 6):
+              try:
+                  query = urllib.parse.urlencode({
+                      "source": "github-actions",
+                      "_": int(time.time()),
+                  })
+                  request = urllib.request.Request(
+                      f"{url}?{query}",
+                      headers={"User-Agent": "kdual-faq-sync/1.0"},
+                  )
+                  with urllib.request.urlopen(request, timeout=60) as response:
+                      payload = json.load(response)
+                  print(f"FAQ data fetched successfully on attempt {attempt}")
+                  break
+              except (
+                  urllib.error.HTTPError,
+                  urllib.error.URLError,
+                  TimeoutError,
+                  json.JSONDecodeError,
+              ) as error:
+                  print(f"Attempt {attempt}/5 failed: {error}")
+                  if attempt == 5:
+                      raise
+                  time.sleep(15)
 
           if payload.get("ok") is not True or not isinstance(payload.get("items"), list):
               raise SystemExit("Apps Script returned an invalid FAQ payload")
@@ -62,7 +85,10 @@ jobs:
               "items": payload["items"],
           }
           target.parent.mkdir(parents=True, exist_ok=True)
-          target.write_text(json.dumps(output, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+          target.write_text(
+              json.dumps(output, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8",
+          )
           print(f"Updated {target} with {len(payload['items'])} FAQ items")
           PY
 
