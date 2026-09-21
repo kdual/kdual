@@ -79,16 +79,16 @@ window.FAQ_DEMO = [
     }));
     $('#empty').hidden=visible.length>0||busy;
   }
-  function jsonp(url) {
-    return new Promise((resolve,reject)=>{
-      const u=new URL(url);
-      if(u.origin!=='https://script.google.com'||!/^\/macros\/s\/[^/]+\/exec$/.test(u.pathname)) {reject(new Error('올바른 Apps Script 배포 주소가 아닙니다.'));return;}
-      const cb='faqCallback_'+Date.now()+'_'+Math.floor(Math.random()*1e6);const script=document.createElement('script');
-      const cleanup=()=>{clearTimeout(timer);script.remove();delete window[cb];};
-      const timer=setTimeout(()=>{cleanup();reject(new Error('응답 시간 초과'));},45000);
-      window[cb]=result=>{cleanup();resolve(result);};script.onerror=()=>{cleanup();reject(new Error('연결 실패'));};
-      u.searchParams.set('callback',cb);u.searchParams.set('_',Date.now());script.src=u.href;document.head.append(script);
-    });
+  async function loadFaqData() {
+    const controller=new AbortController();
+    const timer=setTimeout(()=>controller.abort(),15000);
+    try {
+      const url=new URL('data/faq.json',window.location.href);
+      url.searchParams.set('_',Date.now());
+      const response=await fetch(url,{cache:'no-store',signal:controller.signal});
+      if(!response.ok)throw new Error(`FAQ 데이터 응답 오류 (${response.status})`);
+      return await response.json();
+    } finally {clearTimeout(timer);}
   }
   async function load() {
     if(busy)return;busy=true;$('#refresh').disabled=true;$('#status').className='';$('#status').textContent='질문을 불러오는 중입니다…';
@@ -98,14 +98,17 @@ window.FAQ_DEMO = [
       let result;
       if(config.demo===true&&!config.apiUrl){result=window.FAQ_DEMO;$('#status').textContent='미리보기 · 화면 확인용 예시 6건입니다. 공식 FAQ가 아닙니다.';}
       else {
-        if(!config.apiUrl)throw new Error('연결 주소 없음');
-        const response=await jsonp(config.apiUrl);
+        const response=await loadFaqData();
         if(!response||response.ok!==true||!Array.isArray(response.items))throw new Error('데이터 형식 오류');
-        result=response.items;$('#status').textContent=`최근 확인 ${new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})}`;
+        result=response.items;
+        const synced=response.syncedAt?new Date(response.syncedAt):null;
+        $('#status').textContent=synced&&!Number.isNaN(synced.getTime())
+          ?`최근 동기화 ${synced.toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'})}`
+          :`최근 확인 ${new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})}`;
       }
       entries=result.filter(x=>x&&typeof x.question==='string'&&x.question.trim()&&typeof x.answer==='string'&&x.answer.trim()).map(x=>({...x,category:String(x.category||'기타'),pinned:x.pinned===true}));
       entries.sort((a,b)=>Number(b.pinned)-Number(a.pinned)||String(b.updated||'').localeCompare(String(a.updated||'')));
-    }catch(error){$('#status').className='error';$('#status').textContent='질문을 불러오지 못했습니다. 잠시 후 새로고침해 주세요. 운영자는 연결 주소와 웹 앱 공개 설정을 확인해 주세요.';}
+    }catch(error){$('#status').className='error';$('#status').textContent='질문을 불러오지 못했습니다. 잠시 후 새로고침해 주세요.';}
     finally{busy=false;$('#refresh').disabled=false;renderCategories();renderList();if($('#status').className==='error')$('#empty').hidden=true;}
   }
   $('#search-form').onsubmit=e=>{e.preventDefault();query=$('#search').value.trim();renderList();};
