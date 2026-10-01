@@ -5,9 +5,10 @@
       "title": "계약학과 운영 매뉴얼",
       "category": "계약학과",
       "description": "계약학과 운영 매뉴얼(2023년 5월판). PDF 보기·다운로드 및 E-BOOK 열람을 제공합니다.",
-      "pdfUrl": "documents/contract-department-manual/contract-department-manual.pdf",
+      "pdfUrl": "documents/contract-department-manual/계약학과 운영 매뉴얼.pdf",
       "ebookUrl": "documents/contract-department-manual/ebook/index.html",
-      "published": true
+      "published": true,
+      "fileName": "계약학과 운영 매뉴얼.pdf"
     }
   ]
 }
