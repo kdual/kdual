@@ -1,0 +1,150 @@
+{
+    "label": "목차형 II",
+    "version": 1.0,
+    "locales": {
+        "label": {
+            "root": "TOC II"
+        }
+    },
+    "config": {
+        "intro": true,
+        "side-toc": {
+            "itemConfig": {
+                "textColor": "black",
+                "items": {
+                    "0": {
+                        "backgroundColor": "#e76d92",
+                        "textColor": "white"
+                    },
+                    "1": {
+                        "backgroundColor": "#ed8186",
+                        "textColor": "white"
+                    },
+                    "2": {
+                        "backgroundColor": "#ec8550",
+                        "textColor": "white"
+                    },
+                    "3": {
+                        "backgroundColor": "#ebad01",
+                        "textColor": "white"
+                    },
+                    "4": {
+                        "backgroundColor": "#add069",
+                        "textColor": "white"
+                    },
+                    "5": {
+                        "backgroundColor": "#4cb260",
+                        "textColor": "white"
+                    },
+                    "6": {
+                        "backgroundColor": "#5bb8ad",
+                        "textColor": "white"
+                    },
+                    "7": {
+                        "backgroundColor": "#6ebecd",
+                        "textColor": "white"
+                    },
+                    "8": {
+                        "backgroundColor": "#4e97c0",
+                        "textColor": "white"
+                    },
+                    "9": {
+                        "backgroundColor": "#4e97c0",
+                        "textColor": "white"
+                    },
+                    "10": {
+                        "backgroundColor": "#5a4c99",
+                        "textColor": "white"
+                    },
+                    "11": {
+                        "backgroundColor": "#ed8186",
+                        "textColor": "white"
+                    },
+                    "12": {
+                        "backgroundColor": "#ec8550",
+                        "textColor": "white"
+                    },
+                    "13": {
+                        "backgroundColor": "#ec8550",
+                        "textColor": "white"
+                    },
+                    "14": {
+                        "backgroundColor": "#ec8550",
+                        "textColor": "white"
+                    },
+                    "15": {
+                        "backgroundColor": "#ebad01",
+                        "textColor": "white"
+                    },
+                    "16": {
+                        "backgroundColor": "#5bb8ad",
+                        "textColor": "white"
+                    },
+                    "17": {
+                        "backgroundColor": "#6ebecd",
+                        "textColor": "white"
+                    },
+                    "18": {
+                        "backgroundColor": "#6ebecd",
+                        "textColor": "white"
+                    },
+                    "19": {
+                        "backgroundColor": "#6ebecd",
+                        "textColor": "white"
+                    },
+                    "20": {
+                        "backgroundColor": "#4e97c0",
+                        "textColor": "white"
+                    },
+                    "21": {
+                        "backgroundColor": "#5a4c99",
+                        "textColor": "white"
+                    },
+                    "22": {
+                        "backgroundColor": "#ed8186",
+                        "textColor": "white"
+                    },
+                    "23": {
+                        "backgroundColor": "#ec8550",
+                        "textColor": "white"
+                    },
+                    "24": {
+                        "backgroundColor": "#ebad01",
+                        "textColor": "white"
+                    },
+                    "25": {
+                        "backgroundColor": "#add069",
+                        "textColor": "white"
+                    },
+                    "26": {
+                        "backgroundColor": "#4cb260",
+                        "textColor": "white"
+                    },
+                    "27": {
+                        "backgroundColor": "#5bb8ad",
+                        "textColor": "white"
+                    },
+                    "28": {
+                        "backgroundColor": "#6ebecd",
+                        "textColor": "white"
+                            
+                    }
+                }
+            }
+        },
+        
+        "projectConfig": {
+            "corners": {
+                "backward": ["bl"],
+                "forward": ["br"],
+                "all": ["bl", "br"]
+            },
+            "bookZoom": {
+                "zoomInOutStepPercent": 20
+            }
+        }
+    },
+    "templates": {
+        "ZoomBar": "zoombar.html"
+    }
+}
