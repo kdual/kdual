@@ -1,21 +1,30 @@
 {
   "ok": true,
-  "syncedAt": "2026-10-01T04:55:34.225855+00:00",
+  "syncedAt": "2026-10-01T06:56:35.753983+00:00",
   "items": [
     {
       "id": "sample-07",
-      "category": "이용 안내",
-      "question": "테스트용",
-      "answer": "테스트",
+      "category": "간담회",
+      "question": "간담회 참여방법",
+      "answer": "비행기타고 참여",
       "pinned": true,
       "updated": "9/20/2026",
       "link": ""
     },
     {
+      "id": "sample-08",
+      "category": "커뮤니티",
+      "question": "커뮤니티 참여방법",
+      "answer": "차타고 참여",
+      "pinned": true,
+      "updated": "9/22/2026",
+      "link": ""
+    },
+    {
       "id": "sample-09",
-      "category": "운영매뉴얼",
-      "question": "일학습병행 학습근로자 참여요건",
-      "answer": "입사 3년이내",
+      "category": "FAQ",
+      "question": "운영매뉴얼 다운로드 방법",
+      "answer": "주요규정 페이지 참고",
       "pinned": true,
       "updated": "9/22/2026",
       "link": ""
