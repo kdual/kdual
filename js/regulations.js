@@ -25,7 +25,11 @@ function render(){
 }
 function updateViewer(){
  $('#pdf-tab').setAttribute('aria-pressed',String(!book));$('#book-tab').setAttribute('aria-pressed',String(book));$('#book-tab').disabled=!current.ebookUrl;
- const url=book?current.ebookUrl:current.pdfUrl;$('#document-frame').src=url;$('#viewer-newtab').href=url;$('#viewer-download').href=current.pdfUrl;
+ const url=book?current.ebookUrl:current.pdfUrl;const frame=$('#document-frame');
+ // Chromium blocks its native PDF viewer inside a sandboxed iframe.
+ if(!book&&new URL(url).origin===location.origin)frame.removeAttribute('sandbox');
+ else frame.setAttribute('sandbox','allow-same-origin allow-scripts allow-downloads');
+ frame.src=url;$('#viewer-newtab').href=url;$('#viewer-download').href=current.pdfUrl;
 }
 function open(x,isBook){current=x;book=isBook;$('#viewer-title').textContent=x.title;updateViewer();$('#viewer').showModal();}
 $('#search').oninput=render;$('#search-form').onsubmit=e=>{e.preventDefault();render();};$('#close-viewer').onclick=()=>$('#viewer').close();$('#viewer').onclick=e=>{if(e.target===$('#viewer'))$('#viewer').close();};$('#viewer').onclose=()=>{$('#document-frame').removeAttribute('src');current=null;};
