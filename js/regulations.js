@@ -1,12 +1,12 @@
 (() => {
 'use strict';
 const $=s=>document.querySelector(s);
-const standardCategories=['전체','법령 및 규정','운영 지침','평가 및 품질관리','서식 및 매뉴얼'];
+const standardCategories=['전체','일학습병행','계약학과','기타'];
 let entries=[],category='전체',loading=true,error=false,current=null,book=false;
 const make=(tag,cls,text)=>{const el=document.createElement(tag);el.className=cls||'';if(text!==undefined)el.textContent=text;return el;};
 const safeUrl=value=>{if(typeof value!=='string'||!value.trim())return null;try{const u=new URL(value,location.href);return u.protocol==='https:'||(u.protocol==='http:'&&u.origin===location.origin)?u.href:null;}catch{return null;}};
 function render(){
- const categories=[...new Set([...standardCategories,...entries.map(x=>x.category)])];
+ const categories=standardCategories;
  $('#categories').replaceChildren(...categories.map(name=>{const b=make('button','',name);b.type='button';b.setAttribute('aria-pressed',String(name===category));b.append(make('span','',String(name==='전체'?entries.length:entries.filter(x=>x.category===name).length)));b.onclick=()=>{category=name;render();};return b;}));
  const words=$('#search').value.trim().toLowerCase().split(/\s+/).filter(Boolean);
  const visible=entries.filter(x=>(category==='전체'||category===x.category)&&words.every(w=>`${x.title} ${x.description} ${x.category}`.toLowerCase().includes(w)));
@@ -34,6 +34,6 @@ render();
 const controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),15000);
 fetch(`data/regulations.json?_=${Date.now()}`,{cache:'no-store',signal:controller.signal}).then(r=>{if(!r.ok)throw new Error(`HTTP ${r.status}`);return r.json();}).then(data=>{
  if(!data||!Array.isArray(data.documents))throw new Error('Invalid document list');
- entries=data.documents.filter(x=>x&&x.published!==false&&typeof x.title==='string'&&x.title.trim()&&safeUrl(x.pdfUrl)).map(x=>({title:x.title.trim(),category:typeof x.category==='string'&&x.category.trim()?x.category:'기타',description:typeof x.description==='string'?x.description:'',revisedDate:typeof x.revisedDate==='string'?x.revisedDate:'',effectiveDate:typeof x.effectiveDate==='string'?x.effectiveDate:'',pdfUrl:safeUrl(x.pdfUrl),ebookUrl:safeUrl(x.ebookUrl)}));
+ entries=data.documents.filter(x=>x&&x.published!==false&&typeof x.title==='string'&&x.title.trim()&&safeUrl(x.pdfUrl)).map(x=>({title:x.title.trim(),category:['일학습병행','계약학과','기타'].includes(String(x.category||'').trim())?x.category.trim():'기타',description:typeof x.description==='string'?x.description:'',revisedDate:typeof x.revisedDate==='string'?x.revisedDate:'',effectiveDate:typeof x.effectiveDate==='string'?x.effectiveDate:'',pdfUrl:safeUrl(x.pdfUrl),ebookUrl:safeUrl(x.ebookUrl)}));
 }).catch(()=>{error=true;}).finally(()=>{clearTimeout(timeout);loading=false;render();});
 })();
