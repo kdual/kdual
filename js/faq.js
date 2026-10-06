@@ -84,7 +84,8 @@
       meta.append(node('span', '', [entry.category, entry.topic || entry.legacyCategory].filter(Boolean).join(' · ')));
       if (entry.pinned) meta.append(node('span', 'pin', '중요'));
       wrap.append(meta, node('span', 'question-title', entry.question));
-      const plus = node('span', 'plus', '+'); plus.setAttribute('aria-hidden', 'true');
+      const plus = node('span', 'plus', '전체 보기'); plus.setAttribute('aria-hidden', 'true');
+      detail.addEventListener('toggle', () => { plus.textContent = detail.open ? '접기' : '전체 보기'; });
       summary.append(node('span', 'q', 'Q'), wrap, plus);
       const answer = node('div', 'answer'); answer.append(node('p', 'answer-text', entry.answer));
       const link = safeLink(entry.link);
