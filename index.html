@@ -50,6 +50,7 @@
 @media(max-width:760px){.intake-card{grid-template-columns:auto 1fr;padding:20px;gap:14px;margin-bottom:45px}.intake-open{grid-column:1/-1;width:100%}.intake-dialog{width:calc(100% - 24px)}.intake-panel{padding:24px 20px}.intake-grid{grid-template-columns:1fr}.intake-field.full{grid-column:auto}.intake-actions{display:grid;grid-template-columns:1fr 1fr}.intake-actions button{width:100%}}
 </style><style id="site-nav-style">.site-nav{display:flex;gap:10px;flex-shrink:0}.site-nav a{display:flex;align-items:center;justify-content:center;min-width:132px;min-height:58px;padding:14px 28px;border-radius:10px;text-decoration:none;font-size:19px;font-weight:800;color:var(--muted)}.site-nav a:hover{background:var(--pale);color:var(--blue)}.site-nav a[aria-current="page"]{background:var(--blue);color:white}@media(max-width:760px){header{flex-wrap:wrap;gap:14px}.site-nav{width:100%;border-top:1px solid var(--line);padding-top:12px}.site-nav a{flex:1;min-width:0;min-height:56px;font-size:18px;padding:12px 20px;text-align:center}.header-label{display:none}}.intro{border-left:4px solid var(--blue)}</style>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=20261001-faq2"><link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png?v=20261001-faq2"><link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png?v=20261001-faq2">
+<link rel="stylesheet" href="styles/faq-menu.css?v=20261006-1">
 </head>
 <body>
 <a class="skip" href="#questions">질문 목록으로 건너뛰기</a>
@@ -69,76 +70,7 @@ window.FAQ_DEMO = [
 {id:'sample-05',category:'평가 및 수료',question:'평가와 수료 기준은 어디에서 확인할 수 있나요?',answer:'[답변 작성 예시]\n대상 훈련과정과 적용 연도를 명시하고 확인 가능한 공식 자료를 연결해 주세요.',pinned:false,updated:'2026-09-20'},
 {id:'sample-06',category:'이용 안내',question:'게시글은 어떻게 추가하거나 수정하나요?',answer:'운영자는 관리용 Google Sheets에서 한 행에 질문 하나를 입력합니다.\n질문, 답변, 분류, 수정일을 작성하고 공개여부를 공개로 선택하세요.\n초기 연결을 완료하면 페이지를 다시 열거나 새로고침할 때 수정 내용이 반영됩니다.',pinned:false,updated:'2026-09-20'}
 ];
-</script><script>(() => {
-  'use strict';
-  const $ = s => document.querySelector(s);
-  const config = window.FAQ_CONFIG || {};
-  let entries = [], category = '전체', query = '', busy = false;
-  const node = (tag, cls, value) => {const el=document.createElement(tag);if(cls)el.className=cls;if(value!==undefined)el.textContent=value;return el;};
-  function safeLink(value) {try {const u=new URL(value);return ['https:','http:'].includes(u.protocol)?u.href:null;}catch{return null;}}
-  function renderCategories() {
-    const names=['전체',...new Set(entries.map(x=>x.category))];
-    if(!names.includes(category))category='전체';
-    $('#categories').replaceChildren(...names.map(name=>{
-      const b=node('button','',name);b.type='button';b.setAttribute('aria-pressed',String(name===category));
-      b.append(node('span','total',String(name==='전체'?entries.length:entries.filter(x=>x.category===name).length)));
-      b.onclick=()=>{category=name;renderCategories();renderList();};return b;
-    }));
-  }
-  function renderList() {
-    const words=query.toLocaleLowerCase().split(/\s+/).filter(Boolean);
-    const visible=entries.filter(x=>(category==='전체'||x.category===category)&&words.every(w=>`${x.question} ${x.answer} ${x.category}`.toLocaleLowerCase().includes(w)));
-    $('#list-title').replaceChildren(document.createTextNode(category==='전체'?'전체 질문':category),node('span','',String(visible.length)));
-    $('#faq-list').replaceChildren(...visible.map(x=>{
-      const d=node('details'); const s=node('summary');const wrap=node('div');const meta=node('div','meta');
-      meta.append(node('span','',x.category));if(x.pinned)meta.append(node('span','pin','중요'));
-      wrap.append(meta,node('span','question-title',x.question));const plus=node('span','plus','+');plus.setAttribute('aria-hidden','true');
-      s.append(node('span','q','Q'),wrap,plus);
-      const a=node('div','answer');a.append(node('p','answer-text',x.answer));
-      const link=safeLink(x.link);if(link){const l=node('a','answer-link','관련 자료 보기 ↗');l.href=link;l.target='_blank';l.rel='noopener noreferrer';a.append(l);}
-      if(x.updated)a.append(node('div','answer-meta',`수정일 ${x.updated}`));d.append(s,a);return d;
-    }));
-    $('#empty').hidden=visible.length>0||busy;
-  }
-  async function loadFaqData() {
-    const controller=new AbortController();
-    const timer=setTimeout(()=>controller.abort(),15000);
-    try {
-      const url=new URL('data/faq.json',window.location.href);
-      url.searchParams.set('_',Date.now());
-      const response=await fetch(url,{cache:'no-store',signal:controller.signal});
-      if(!response.ok)throw new Error(`FAQ 데이터 응답 오류 (${response.status})`);
-      return await response.json();
-    } finally {clearTimeout(timer);}
-  }
-  async function load() {
-    if(busy)return;busy=true;$('#refresh').disabled=true;$('#status').className='';$('#status').textContent='질문을 불러오는 중입니다…';
-    // 이전에 공개되었던 글이 비공개로 바뀔 수 있으므로 실패 시 이전 답변을 남기지 않습니다.
-    entries=[];renderCategories();renderList();
-    try {
-      let result;
-      if(config.demo===true&&!config.apiUrl){result=window.FAQ_DEMO;$('#status').textContent='미리보기 · 화면 확인용 예시 6건입니다. 공식 FAQ가 아닙니다.';}
-      else {
-        const response=await loadFaqData();
-        if(!response||response.ok!==true||!Array.isArray(response.items))throw new Error('데이터 형식 오류');
-        result=response.items;
-        const synced=response.syncedAt?new Date(response.syncedAt):null;
-        $('#status').textContent=synced&&!Number.isNaN(synced.getTime())
-          ?`최근 동기화 ${synced.toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'})}`
-          :`최근 확인 ${new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})}`;
-      }
-      entries=result.filter(x=>x&&typeof x.question==='string'&&x.question.trim()&&typeof x.answer==='string'&&x.answer.trim()).map(x=>({...x,category:String(x.category||'기타'),pinned:x.pinned===true}));
-      entries.sort((a,b)=>Number(b.pinned)-Number(a.pinned)||String(b.updated||'').localeCompare(String(a.updated||'')));
-    }catch(error){$('#status').className='error';$('#status').textContent='질문을 불러오지 못했습니다. 잠시 후 새로고침해 주세요.';}
-    finally{busy=false;$('#refresh').disabled=false;renderCategories();renderList();if($('#status').className==='error')$('#empty').hidden=true;}
-  }
-  $('#search-form').onsubmit=e=>{e.preventDefault();query=$('#search').value.trim();renderList();};
-  $('#search').oninput=()=>{query=$('#search').value.trim();renderList();};
-  $('#reset').onclick=()=>{query='';category='전체';$('#search').value='';renderCategories();renderList();$('#search').focus();};
-  $('#refresh').onclick=load;
-  load();
-})();
-</script><script>
+</script><script src="js/faq.js?v=20261006-1"></script><script>
 (function(){
   'use strict';
   var d=document.querySelector('#intake-dialog');

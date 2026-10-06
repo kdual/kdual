@@ -5,11 +5,14 @@ on:
   push:
     paths:
       - ".github/workflows/sync-faq.yml"
+      - "js/faq.js"
+      - "styles/faq-menu.css"
   schedule:
     - cron: "*/5 * * * *"
 
 permissions:
   contents: write
+  pages: write
 
 concurrency:
   group: sync-faq
@@ -23,6 +26,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v5
+        with:
+          ref: main
 
       - name: Fetch and validate FAQ data
         env:
@@ -95,6 +100,7 @@ jobs:
           PY
 
       - name: Commit updated FAQ data
+        id: commit
         run: |
           if git diff --quiet -- data/faq.json; then
             echo "No FAQ changes to commit"
@@ -105,3 +111,11 @@ jobs:
           git add data/faq.json
           git commit -m "Update FAQ data"
           git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      # Commits made with GITHUB_TOKEN do not trigger a branch-based Pages build.
+      - name: Publish updated FAQ data
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds" --silent
