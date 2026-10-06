@@ -10,3 +10,11 @@
 .heading-art{flex-basis:380px}.tino-pair{width:100%;height:168px;overflow:hidden;align-items:center}.tino-reading-guide{display:block;width:380px;max-width:100%;height:auto}.heading-art .format-note{margin-top:8px}
 @media(max-width:760px){.heading-art{flex-basis:132px}.tino-pair{width:126px;height:144px;overflow:hidden;justify-content:flex-start}.tino-reading-guide{width:300px;max-width:none;margin-left:-20px}.heading-art .format-note{margin-top:6px}}
 @media(max-width:380px){.heading-art{flex-basis:112px}.tino-pair{width:106px;height:126px}.tino-reading-guide{width:260px;margin-left:-20px}}
+
+/* Illustration caption: file formats, rather than action buttons. */
+.heading-art .format-note{align-items:center;justify-content:center;gap:12px;min-height:29.45px;margin-top:8px;color:var(--muted)}
+.heading-art .format-note>span{display:inline-flex;align-items:center;gap:5px;padding:0;border:0;border-radius:0;background:none;color:inherit;font-size:13px;font-weight:500;letter-spacing:.1px}
+.heading-art .format-note svg{width:16px;height:16px;flex:none;color:var(--blue)}
+.heading-art .format-note .format-description{padding:0;border:0;background:none;color:inherit;font:inherit;letter-spacing:0}
+.format-divider{display:block;width:1px;height:12px;background:#bdcfdf}
+@media(max-width:760px){.heading-art .format-note{gap:7px;min-height:25.8px;margin-top:6px}.heading-art .format-note>span{font-size:11px;gap:3px}.heading-art .format-note svg{width:13px;height:13px}.heading-art .format-note .format-description{display:none}}
