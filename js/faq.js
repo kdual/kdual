@@ -113,10 +113,13 @@
       const plus = node('span', 'plus', '전체 보기'); plus.setAttribute('aria-hidden', 'true');
       detail.addEventListener('toggle', () => { plus.textContent = detail.open ? '접기' : '전체 보기'; });
       summary.append(node('span', 'q', 'Q'), wrap, plus);
-      const answer = node('div', 'answer'); answer.append(node('p', 'answer-text', entry.answer));
+      const answer = node('div', 'answer'), answerContent = node('div', 'answer-content');
+      const answerLetter = node('span', 'a', 'A'); answerLetter.setAttribute('aria-hidden', 'true');
+      answerContent.append(node('p', 'answer-label', '답변'), node('p', 'answer-text', entry.answer));
+      answer.append(answerLetter, answerContent);
       const link = safeLink(entry.link);
-      if (link) { const anchor = node('a', 'answer-link', '관련 자료 보기 ↗'); anchor.href = link; anchor.target = '_blank'; anchor.rel = 'noopener noreferrer'; answer.append(anchor); }
-      if (entry.updated) answer.append(node('div', 'answer-meta', `수정일 ${entry.updated}`));
+      if (link) { const anchor = node('a', 'answer-link', '관련 자료 보기 ↗'); anchor.href = link; anchor.target = '_blank'; anchor.rel = 'noopener noreferrer'; answerContent.append(anchor); }
+      if (entry.updated) answerContent.append(node('div', 'answer-meta', `수정일 ${entry.updated}`));
       detail.append(summary, answer); return detail;
     }));
     $('#empty').hidden = visible.length > 0 || busy;

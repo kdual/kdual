@@ -1,4 +1,19 @@
 /* Fixed main categories, with subtopics supplied by the management sheet. */
+/* Aligned Q/A markers and a divider between the two reading areas. */
+#faq-list summary{grid-template-columns:34px minmax(0,1fr) 64px;align-items:start;gap:16px;padding:24px 20px}
+#faq-list details[open] summary{background:#f4f9fd}
+#faq-list .q,#faq-list .a{display:grid;place-items:center;align-self:start;width:32px;height:32px;border-radius:8px;font-size:20px;font-weight:800;line-height:1}
+#faq-list .q{background:var(--blue);color:white}
+#faq-list .meta{margin-bottom:8px;flex-wrap:wrap}
+#faq-list .plus{margin-top:8px}
+#faq-list .answer{display:grid;grid-template-columns:34px minmax(0,1fr);gap:16px;padding:25px 20px 28px;background:white;border-top:1px solid #ccddec}
+#faq-list .a{background:#e4f3fc;color:var(--blue);border:1px solid #c3def2}
+#faq-list .answer-content{min-width:0}
+#faq-list .answer-label{margin:0 0 12px;color:var(--blue);font-size:14px;font-weight:700}
+#faq-list .answer-text{margin:0;padding:0;white-space:pre-wrap;line-height:1.8}
+#faq-list .answer-link{display:inline-flex;margin-top:20px}
+#faq-list .answer-meta{margin-top:16px}
+@media(max-width:480px){#faq-list summary{grid-template-columns:30px minmax(0,1fr) 54px;padding:20px 12px;gap:10px}#faq-list .q,#faq-list .a{width:28px;height:28px;font-size:18px}#faq-list .answer{grid-template-columns:30px minmax(0,1fr);gap:10px;padding:22px 12px}#faq-list .plus{min-height:44px;display:grid;place-items:center}}
 .faq-page-controls{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:0 0 16px;font-size:14px;color:var(--muted)}
 .faq-page-controls select{min-height:44px;padding:8px 30px 8px 12px;border:1px solid var(--line);border-radius:7px;background:white;color:var(--ink);font:inherit}
 .faq-page-range{margin-left:auto}
