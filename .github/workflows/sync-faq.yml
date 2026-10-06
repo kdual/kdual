@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - ".github/workflows/sync-faq.yml"
+      - "index.html"
       - "js/faq.js"
       - "styles/faq-menu.css"
   schedule:
@@ -114,8 +115,8 @@ jobs:
           echo "changed=true" >> "$GITHUB_OUTPUT"
 
       # Commits made with GITHUB_TOKEN do not trigger a branch-based Pages build.
-      - name: Publish updated FAQ data
-        if: steps.commit.outputs.changed == 'true'
+      - name: Publish FAQ updates
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch' || steps.commit.outputs.changed == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds" --silent
