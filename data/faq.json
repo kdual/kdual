@@ -1,24 +1,7 @@
 {
   "ok": true,
+  "syncedAt": "2026-10-06T08:27:16.509432+00:00",
   "items": [
-    {
-      "id": "sample-07",
-      "category": "간담회",
-      "question": "간담회 참여방법",
-      "answer": "비행기타고 참여",
-      "pinned": false,
-      "updated": "2026. 9. 20",
-      "link": ""
-    },
-    {
-      "id": "sample-08",
-      "category": "커뮤니티",
-      "question": "커뮤니티 참여방법",
-      "answer": "차타고 참여",
-      "pinned": false,
-      "updated": "2026. 9. 22",
-      "link": ""
-    },
     {
       "id": "sample-09",
       "category": "제도개선 / 2026년 상반기",
@@ -42,7 +25,7 @@
       "category": "제도개선 / 2026년 상반기",
       "question": "학습기업 지정심사 시, 직종전문가 및 외부전문가의 소통방식 개선 필요",
       "answer": "<일부수용>\n○ 2027년 일학습병행 신청기업 체크리스트 내 심사위원의 태도 및 언행 주의 등에 대한 문구를 추가하여 배포 검토",
-      "pinned": false,
+      "pinned": true,
       "updated": "2026. 10. 6",
       "link": "kdual.github.io/kdual"
     },
@@ -118,6 +101,5 @@
       "updated": "2026. 10. 6",
       "link": ""
     }
-  ],
-  "syncedAt": "2026-10-06T08:24:44Z"
+  ]
 }
