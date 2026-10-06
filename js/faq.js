@@ -5,12 +5,34 @@
   const nestedTopics = new Set(['간담회', '커뮤니티', '제도개선']);
   const config = window.FAQ_CONFIG || {};
   let entries = [], category = '전체', topic = '전체', expanded = '', query = '', busy = false;
+  let page = 1, pageSize = 5;
   const node = (tag, cls, value) => {
     const element = document.createElement(tag);
     if (cls) element.className = cls;
     if (value !== undefined) element.textContent = value;
     return element;
   };
+  const controls = node('div', 'faq-page-controls'), sizeLabel = node('label', '', '페이지당 질문 '), sizeSelect = node('select'), rangeLabel = node('span', 'faq-page-range');
+  sizeSelect.id = 'faq-page-size'; sizeLabel.htmlFor = sizeSelect.id;
+  [5, 10, 50].forEach(size => { const option = node('option', '', `${size}개`); option.value = String(size); sizeSelect.append(option); });
+  controls.append(sizeLabel, sizeSelect, rangeLabel); $('#faq-list').before(controls);
+  const pagination = node('nav', 'faq-pagination'); pagination.setAttribute('aria-label', '질문 목록 페이지'); $('#faq-list').after(pagination);
+  $('#list-title').tabIndex = -1;
+  sizeSelect.onchange = () => { pageSize = Number(sizeSelect.value); page = 1; renderList(); };
+  function renderPagination(total, pages) {
+    rangeLabel.textContent = total ? `총 ${total}개 · ${(page - 1) * pageSize + 1}–${Math.min(page * pageSize, total)}개 표시` : '총 0개';
+    pagination.replaceChildren(); pagination.hidden = total === 0;
+    const add = (label, target, disabled = false) => {
+      const button = node('button', 'faq-page-button', label); button.type = 'button'; button.disabled = disabled;
+      if (target === page && /^\d/.test(label)) button.setAttribute('aria-current', 'page');
+      button.onclick = () => { page = target; renderList(); $('#list-title').focus({preventScroll: true}); $('#list-title').scrollIntoView({block: 'start', behavior: 'auto'}); };
+      pagination.append(button);
+    };
+    add('이전', page - 1, page === 1);
+    const numbers = [...new Set([1, ...Array.from({length: 5}, (_, i) => page - 2 + i).filter(n => n > 0 && n <= pages), pages])].sort((a, b) => a - b);
+    numbers.forEach((number, index) => { if (index && number - numbers[index - 1] > 1) pagination.append(node('span', 'faq-page-gap', '…')); add(`${number}페이지`, number); });
+    add('다음', page + 1, page === pages);
+  }
   function safeLink(value) {
     const text = String(value || '').trim();
     const address = /^(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,}(?::\d+)?(?:[/?#]|$)/i.test(text) ? `https://${text}` : text;
@@ -56,7 +78,7 @@
       }
       button.onclick = () => {
         expanded = nestedTopics.has(name) && expanded !== name ? name : '';
-        category = name; topic = '전체'; renderCategories(); renderList(); restoreFocus(name, undefined);
+        category = name; topic = '전체'; page = 1; renderCategories(); renderList(); restoreFocus(name, undefined);
       };
       group.append(button);
       if (nestedTopics.has(name)) {
@@ -68,7 +90,7 @@
           child.dataset.category = name; child.dataset.topic = subtopic;
           child.setAttribute('aria-pressed', String(category === name && topic === subtopic));
           child.append(node('span', 'category-name', subtopic), node('span', 'total', String(entries.filter(entry => entry.category === name && (subtopic === '전체' || entry.topic === subtopic)).length)));
-          child.onclick = () => { category = name; topic = subtopic; expanded = name; renderCategories(); renderList(); restoreFocus(name, subtopic); };
+          child.onclick = () => { category = name; topic = subtopic; expanded = name; page = 1; renderCategories(); renderList(); restoreFocus(name, subtopic); };
           children.append(child);
         });
         group.append(children);
@@ -81,7 +103,9 @@
     const visible = entries.filter(entry => (category === '전체' || entry.category === category) && (topic === '전체' || entry.topic === topic) && words.every(word => `${entry.question} ${entry.answer} ${entry.category} ${entry.topic} ${entry.legacyCategory}`.toLocaleLowerCase().includes(word)));
     const label = category === '전체' ? '전체 질문' : topic === '전체' ? category : `${category} · ${topic}`;
     $('#list-title').replaceChildren(document.createTextNode(label), node('span', '', String(visible.length)));
-    $('#faq-list').replaceChildren(...visible.map(entry => {
+    const pages = Math.max(1, Math.ceil(visible.length / pageSize)); page = Math.min(page, pages);
+    renderPagination(visible.length, pages);
+    $('#faq-list').replaceChildren(...visible.slice((page - 1) * pageSize, page * pageSize).map(entry => {
       const detail = node('details'), summary = node('summary'), wrap = node('div'), meta = node('div', 'meta');
       meta.append(node('span', '', [entry.category, entry.topic || entry.legacyCategory].filter(Boolean).join(' · ')));
       if (entry.pinned) meta.append(node('span', 'pin', '중요'));
@@ -128,9 +152,9 @@
     } catch (error) { $('#status').className = 'error'; $('#status').textContent = '질문을 불러오지 못했습니다. 잠시 후 새로고침해 주세요.'; }
     finally { busy = false; $('#refresh').disabled = false; renderCategories(); renderList(); if ($('#status').className === 'error') $('#empty').hidden = true; }
   }
-  $('#search-form').onsubmit = event => { event.preventDefault(); query = $('#search').value.trim(); renderList(); };
-  $('#search').oninput = () => { query = $('#search').value.trim(); renderList(); };
-  $('#reset').onclick = () => { query = ''; category = '전체'; topic = '전체'; expanded = ''; $('#search').value = ''; renderCategories(); renderList(); $('#search').focus(); };
+  $('#search-form').onsubmit = event => { event.preventDefault(); query = $('#search').value.trim(); page = 1; renderList(); };
+  $('#search').oninput = () => { query = $('#search').value.trim(); page = 1; renderList(); };
+  $('#reset').onclick = () => { query = ''; category = '전체'; topic = '전체'; expanded = ''; page = 1; $('#search').value = ''; renderCategories(); renderList(); $('#search').focus(); };
   $('#refresh').onclick = load;
   load();
 })();

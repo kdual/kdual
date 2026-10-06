@@ -1,4 +1,14 @@
 /* Fixed main categories, with subtopics supplied by the management sheet. */
+.faq-page-controls{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:0 0 16px;font-size:14px;color:var(--muted)}
+.faq-page-controls select{min-height:44px;padding:8px 30px 8px 12px;border:1px solid var(--line);border-radius:7px;background:white;color:var(--ink);font:inherit}
+.faq-page-range{margin-left:auto}
+.faq-pagination{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:6px;margin-top:24px}
+.faq-pagination[hidden]{display:none}
+.faq-page-button{min-height:44px;min-width:44px;padding:9px 12px;border:1px solid var(--line);border-radius:7px;background:white;color:var(--ink);font-size:14px}
+.faq-page-button[aria-current="page"]{background:var(--blue);color:white;border-color:var(--blue);font-weight:700}
+.faq-page-button:disabled{opacity:.4;cursor:default}
+.faq-page-gap{padding:0 3px;color:var(--muted)}
+@media(max-width:420px){.faq-page-range{width:100%;margin-left:0}.faq-page-button{padding:9px 10px;font-size:13px}}
 /* Preserve spreadsheet line breaks while keeping closed questions compact. */
 .question-title{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3;overflow:hidden;white-space:pre-wrap;line-height:1.65}
 details[open] .question-title{display:block;-webkit-line-clamp:unset;line-clamp:unset;overflow:visible}
