@@ -1,4 +1,10 @@
 /* Fixed main categories, with subtopics supplied by the management sheet. */
+/* Keep each question and its answer within a separate outlined item. */
+#faq-list{display:grid;gap:16px;border-top:0}
+#faq-list>details{border:1px solid var(--line);border-radius:10px;background:white;overflow:hidden}
+#faq-list>details[open]{border-color:#83afd7;box-shadow:inset 3px 0 var(--blue)}
+#faq-list>details:not([open]) summary{background:white}
+@media(max-width:480px){#faq-list{gap:14px}}
 /* Aligned Q/A markers and a divider between the two reading areas. */
 #faq-list summary{grid-template-columns:34px minmax(0,1fr) 64px;align-items:start;gap:16px;padding:24px 20px}
 #faq-list details[open] summary{background:#f4f9fd}
