@@ -65,3 +65,19 @@ details[open] summary .plus{transform:none}
  #categories .category-topic[aria-pressed="true"]{box-shadow:none}
 }
 @media(max-width:420px){#categories{grid-template-columns:repeat(3,minmax(0,1fr))}}
+/* Mobile: put the action in the heading row and let the text span the card. */
+@media(max-width:760px){
+ #faq-list summary{grid-template-columns:28px minmax(0,1fr) 64px;align-items:center;gap:8px 10px;padding:12px}
+ #faq-list summary>div{display:contents}
+ #faq-list .q,#faq-list .a{width:28px;height:28px;font-size:18px;align-self:center}
+ #faq-list .meta{grid-column:2;grid-row:1;margin:0;font-size:12px;line-height:1.5;overflow-wrap:anywhere}
+ #faq-list .plus{grid-column:3;grid-row:1;display:flex;justify-content:flex-end;align-items:center;gap:5px;min-height:44px;margin:0;padding:0;border:0;border-radius:0;background:transparent;font-size:13px}
+ #faq-list .plus::after{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg);flex-shrink:0}
+ #faq-list details[open] .plus::after{transform:translateY(2px) rotate(225deg)}
+ #faq-list .question-title{grid-column:1/-1;grid-row:2;width:100%;min-width:0;overflow-wrap:anywhere;line-height:1.8}
+ #faq-list .answer{grid-template-columns:28px minmax(0,1fr);align-items:center;gap:12px 10px;padding:18px 12px}
+ #faq-list .answer-content{display:contents}
+ #faq-list .answer-label{grid-column:2;margin:0}
+ #faq-list .answer-text,#faq-list .answer-link,#faq-list .answer-meta{grid-column:1/-1;min-width:0;overflow-wrap:anywhere}
+ #faq-list .answer-link,#faq-list .answer-meta{margin-top:0}
+}
