@@ -12,7 +12,9 @@
     return element;
   };
   function safeLink(value) {
-    try { const url = new URL(value); return ['https:', 'http:'].includes(url.protocol) ? url.href : null; }
+    const text = String(value || '').trim();
+    const address = /^(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,}(?::\d+)?(?:[/?#]|$)/i.test(text) ? `https://${text}` : text;
+    try { const url = new URL(address); return ['https:', 'http:'].includes(url.protocol) ? url.href : null; }
     catch { return null; }
   }
   function normalizeEntry(entry) {
