@@ -45,6 +45,49 @@
       "ebookUrl": "",
       "published": true,
       "fileName": "산업현장 일학습병행 지원에 관한 법률 시행규칙(고용노동부령)(제00291호)(20200828).pdf"
+    },
+    {
+      "id": "work-study-operations-regulation-20251229",
+      "title": "일학습병행 운영규정",
+      "category": "일학습병행",
+      "description": "고용노동부고시 제2025-99호 · 일부개정 전문.",
+      "revisedDate": "2025-12-29",
+      "pdfUrl": "documents/work-study-operations/(251229) 일학습병행 운영규정 일부개정 전문.pdf",
+      "ebookUrl": "",
+      "published": true,
+      "fileName": "(251229) 일학습병행 운영규정 일부개정 전문.pdf"
+    },
+    {
+      "id": "work-study-operations-rules-20251226",
+      "title": "일학습병행 운영규칙",
+      "category": "일학습병행",
+      "description": "일학습병행 운영규칙 일부개정 전문.",
+      "revisedDate": "2025-12-26",
+      "pdfUrl": "documents/work-study-operations/(251226) 일학습병행 운영규칙 일부개정 전문.pdf",
+      "ebookUrl": "",
+      "published": true,
+      "fileName": "(251226) 일학습병행 운영규칙 일부개정 전문.pdf"
+    },
+    {
+      "id": "work-study-center-rules-20251226",
+      "title": "일학습병행 공동훈련센터 운영규칙",
+      "category": "일학습병행",
+      "description": "일학습병행 공동훈련센터 운영에 관한 규칙입니다.",
+      "revisedDate": "2025-12-26",
+      "pdfUrl": "documents/work-study-operations/(251226) 일학습병행 공동훈련센터 운영규칙(1).pdf",
+      "ebookUrl": "",
+      "published": true,
+      "fileName": "(251226) 일학습병행 공동훈련센터 운영규칙(1).pdf"
+    },
+    {
+      "id": "work-study-operations-manual-202511",
+      "title": "일학습병행 운영매뉴얼",
+      "category": "일학습병행",
+      "description": "2025년 11월판. 세부 항목별 변경사항은 해당 항목의 최신 문서를 확인해 주세요.",
+      "pdfUrl": "documents/work-study-operations/(251110) 일학습병행 운영매뉴얼(1).pdf",
+      "ebookUrl": "",
+      "published": true,
+      "fileName": "(251110) 일학습병행 운영매뉴얼(1).pdf"
     }
   ]
 }
