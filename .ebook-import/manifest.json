@@ -1,0 +1,124 @@
+{
+  "sha256": "37baa3339789588551013211172a0fe2f15b13174504b30b1c34c0e42226f488",
+  "parts": [
+    {
+      "path": ".ebook-import/part-000",
+      "size": 8388608,
+      "sha": "5756a5756ed320d4f66cb7069bd64277265d8ce4"
+    },
+    {
+      "path": ".ebook-import/part-001",
+      "size": 8388608,
+      "sha": "745e0e067b28775ddf42afe2c2a729ea0b0d809e"
+    },
+    {
+      "path": ".ebook-import/part-002",
+      "size": 8388608,
+      "sha": "02b6e21975216f44076aab656353d13df3910f60"
+    },
+    {
+      "path": ".ebook-import/part-003",
+      "size": 8388608,
+      "sha": "e48d99e56678a5b8fe68f6cca552c5835eac1c04"
+    },
+    {
+      "path": ".ebook-import/part-004",
+      "size": 8388608,
+      "sha": "09626b214d0f1b65c7d1c997180a441746494c6a"
+    },
+    {
+      "path": ".ebook-import/part-005",
+      "size": 8388608,
+      "sha": "7e9f5a9eafbd18aa8ab0afbc175f054fb31ac641"
+    },
+    {
+      "path": ".ebook-import/part-006",
+      "size": 8388608,
+      "sha": "8937b9d0f2eb7e20f8d302c83319c4d57ec61f09"
+    },
+    {
+      "path": ".ebook-import/part-007",
+      "size": 8388608,
+      "sha": "843d813f14d81848d616f857a72e63862eccf389"
+    },
+    {
+      "path": ".ebook-import/part-008",
+      "size": 8388608,
+      "sha": "b869da6794753bf6fcc4b5b3e7ca869e70639ad1"
+    },
+    {
+      "path": ".ebook-import/part-009",
+      "size": 8388608,
+      "sha": "453ab6dc1d4316e751aa2aded09a94a386c4ee64"
+    },
+    {
+      "path": ".ebook-import/part-010",
+      "size": 8388608,
+      "sha": "318deda2019c129fa544f4dd01509da25fa3ed3d"
+    },
+    {
+      "path": ".ebook-import/part-011",
+      "size": 8388608,
+      "sha": "be8c4f7ce2b46b1668d0c6c3460ae989f1e34cff"
+    },
+    {
+      "path": ".ebook-import/part-012",
+      "size": 8388608,
+      "sha": "79555b13d94a3d18a8f82b6216ee741286199403"
+    },
+    {
+      "path": ".ebook-import/part-013",
+      "size": 8388608,
+      "sha": "bcf7b5274e1fde2bace54780219dfe1655853cff"
+    },
+    {
+      "path": ".ebook-import/part-014",
+      "size": 8388608,
+      "sha": "8c5607a561f1077e3f0e735ddf249692095fb607"
+    },
+    {
+      "path": ".ebook-import/part-015",
+      "size": 8388608,
+      "sha": "56bd876191dcd8c1efdfc0585b8ede31996b0120"
+    },
+    {
+      "path": ".ebook-import/part-016",
+      "size": 8388608,
+      "sha": "821e3a5a4aeefdce9db29881a7ea84a08c8cb315"
+    },
+    {
+      "path": ".ebook-import/part-017",
+      "size": 8388608,
+      "sha": "279bb695d71e00c0f6118c3eacf8b0679b1bdf27"
+    },
+    {
+      "path": ".ebook-import/part-018",
+      "size": 8388608,
+      "sha": "20d98965a1f4ec990584ed16d50e48d5b353a952"
+    },
+    {
+      "path": ".ebook-import/part-019",
+      "size": 8388608,
+      "sha": "1a76101d27252d3ef04e08464e30a20a5cfe22d9"
+    },
+    {
+      "path": ".ebook-import/part-020",
+      "size": 8388608,
+      "sha": "a04037ac59c899b9112ac831135ea0d68efc127a"
+    },
+    {
+      "path": ".ebook-import/part-021",
+      "size": 8388608,
+      "sha": "9b993e9c935e3c5d2db1baa7bd77f47c3135097c"
+    },
+    {
+      "path": ".ebook-import/part-022",
+      "size": 7184325,
+      "sha": "1cbb5db71447cc07e07f78473cb248e634710932"
+    }
+  ],
+  "pages": 367,
+  "files": 851,
+  "uncompressedBytes": 218256483,
+  "zipBytes": 191733701
+}

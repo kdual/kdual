@@ -1,0 +1,63 @@
+name: Import operations manual ebook
+on:
+  push:
+    paths: ['.ebook-import/manifest.json']
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: operations-ebook-import
+  cancel-in-progress: false
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate and import ebook
+        run: |
+          python3 - <<'PY'
+          import hashlib, io, json, pathlib, shutil, zipfile
+          root = pathlib.Path('.')
+          manifest = json.loads((root/'.ebook-import/manifest.json').read_text())
+          archive = b''.join((root/p['path']).read_bytes() for p in manifest['parts'])
+          assert hashlib.sha256(archive).hexdigest() == manifest['sha256'], 'Archive checksum mismatch'
+          target = root/'documents/work-study-operations/ebook'
+          target.mkdir(parents=True, exist_ok=True)
+          with zipfile.ZipFile(io.BytesIO(archive)) as z:
+              assert len(z.infolist()) == manifest['files']
+              assert all(not pathlib.PurePosixPath(n).is_absolute() and '..' not in pathlib.PurePosixPath(n).parts for n in z.namelist())
+              z.extractall(target)
+          project = json.loads((target/'project.json').read_text(encoding='utf-8-sig'))
+          assert len(project['pages']) == 367
+          for page in project['pages']:
+              for key in ('background','thumbnail'):
+                  ref = page.get(key,{}).get('url','').replace('{ASSETS_DIR}','assets/').replace('{SHARED_DIR}','assets/shared/')
+                  assert not ref or (target/ref).is_file(), ref
+          path = root/'data/regulations.json'
+          data = json.loads(path.read_text())
+          for doc in data['documents']:
+              if doc['id'] == 'work-study-operations-manual-202511':
+                  doc['ebookUrl'] = 'documents/work-study-operations/ebook/index.html'
+          path.write_text(json.dumps(data, ensure_ascii=False, indent=2)+'\n')
+          shutil.rmtree(root/'.ebook-import')
+          (root/'.github/workflows/import-operations-ebook.yml').unlink()
+          PY
+      - name: Save imported files
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add documents/work-study-operations/ebook data/regulations.json .ebook-import .github/workflows/import-operations-ebook.yml
+          git commit -m 'Add complete 367-page operations manual ebook'
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+      - name: Deploy pages
+        id: deployment
+        uses: actions/deploy-pages@v4
