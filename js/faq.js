@@ -5,7 +5,8 @@
   const nestedTopics = new Set(['간담회', '커뮤니티', '제도개선']);
   const config = window.FAQ_CONFIG || {};
   let entries = [], category = '전체', topic = '전체', expanded = '', query = '', busy = false;
-  let page = 1, pageSize = 5;
+  let page = 1, pageSize = 5, lastLoadAt = 0, latestLiveAt = 0;
+  const refreshInterval = 5 * 60 * 1000;
   const node = (tag, cls, value) => {
     const element = document.createElement(tag);
     if (cls) element.className = cls;
@@ -125,19 +126,35 @@
     }));
     $('#empty').hidden = visible.length > 0 || busy;
   }
-  async function loadFaqData() {
-    const controller = new AbortController(), timer = setTimeout(() => controller.abort(), 15000);
+  async function fetchFaqData(url, timeout) {
+    const controller = new AbortController(), timer = setTimeout(() => controller.abort(), timeout);
     try {
-      const url = new URL('data/faq.json', window.location.href); url.searchParams.set('_', Date.now());
-      const response = await fetch(url, {cache: 'no-store', signal: controller.signal});
+      url.searchParams.set('_', Date.now());
+      const response = await fetch(url, {cache: 'no-store', credentials: 'omit', signal: controller.signal});
       if (!response.ok) throw new Error(`FAQ 데이터 응답 오류 (${response.status})`);
-      return await response.json();
+      const data = await response.json();
+      if (!data || data.ok !== true || !Array.isArray(data.items)) throw new Error('데이터 형식 오류');
+      return data;
     } finally { clearTimeout(timer); }
   }
-  async function load() {
+  async function loadFaqData() {
+    if (config.apiUrl) {
+      try {
+        const url = new URL(config.apiUrl);
+        if (url.protocol !== 'https:') throw new Error('올바르지 않은 연결 주소');
+        url.searchParams.set('source', 'website');
+        const data = await fetchFaqData(url, 10000);
+        return {...data, live: true};
+      } catch (_) { /* Keep the published copy available during source outages. */ }
+    }
+    return {...await fetchFaqData(new URL('data/faq.json', window.location.href), 15000), live: false};
+  }
+  async function load(silent = false) {
     if (busy) return;
-    busy = true; $('#refresh').disabled = true; $('#status').className = ''; $('#status').textContent = '질문을 불러오는 중입니다…';
-    entries = []; renderCategories(); renderList();
+    busy = true; lastLoadAt = Date.now();
+    let changed = false;
+    $('#refresh').disabled = true;
+    if (!silent) { $('#status').className = ''; $('#status').textContent = '질문을 불러오는 중입니다…'; }
     try {
       let result;
       if (config.demo === true && !config.apiUrl) {
@@ -147,18 +164,30 @@
         if (!response || response.ok !== true || !Array.isArray(response.items)) throw new Error('데이터 형식 오류');
         result = response.items;
         const synced = response.syncedAt ? new Date(response.syncedAt) : null;
-        $('#status').textContent = synced && !Number.isNaN(synced.getTime())
-          ? `최근 동기화 ${synced.toLocaleString('ko-KR', {month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'})}`
-          : `최근 확인 ${new Date().toLocaleTimeString('ko-KR', {hour: '2-digit', minute: '2-digit'})}`;
+        const keepCurrent = !response.live && latestLiveAt > 0 && (!synced || Number.isNaN(synced.getTime()) || synced.getTime() < latestLiveAt);
+        if (response.live) latestLiveAt = Date.now();
+        if (keepCurrent) result = entries;
+        const checked = new Date().toLocaleString('ko-KR', {month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'});
+        $('#status').textContent = response.live
+          ? `최신 자료 확인 ${checked}`
+          : keepCurrent ? '최신 연결이 지연되어 최근 확인한 목록을 표시합니다.'
+          : `저장된 자료 표시${synced && !Number.isNaN(synced.getTime()) ? ` · 최근 동기화 ${synced.toLocaleString('ko-KR', {month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'})}` : ''}`;
       }
-      entries = result.filter(entry => entry && typeof entry.question === 'string' && entry.question.trim() && typeof entry.answer === 'string' && entry.answer.trim()).map(normalizeEntry);
-      entries.sort((a, b) => Number(b.pinned) - Number(a.pinned) || String(b.updated || '').localeCompare(String(a.updated || '')));
-    } catch (error) { $('#status').className = 'error'; $('#status').textContent = '질문을 불러오지 못했습니다. 잠시 후 새로고침해 주세요.'; }
-    finally { busy = false; $('#refresh').disabled = false; renderCategories(); renderList(); if ($('#status').className === 'error') $('#empty').hidden = true; }
+      const nextEntries = result.filter(entry => entry && typeof entry.question === 'string' && entry.question.trim() && typeof entry.answer === 'string' && entry.answer.trim()).map(normalizeEntry);
+      nextEntries.sort((a, b) => Number(b.pinned) - Number(a.pinned) || String(b.updated || '').localeCompare(String(a.updated || '')));
+      changed = JSON.stringify(entries) !== JSON.stringify(nextEntries);
+      entries = nextEntries;
+      $('#status').className = '';
+    } catch (error) { $('#status').className = 'error'; $('#status').textContent = entries.length ? '최신 자료를 확인하지 못해 기존 목록을 유지합니다. 새로고침해 주세요.' : '질문을 불러오지 못했습니다. 잠시 후 새로고침해 주세요.'; }
+    finally { busy = false; $('#refresh').disabled = false; if (changed || !silent) { renderCategories(); renderList(); } if ($('#status').className === 'error') $('#empty').hidden = true; }
   }
   $('#search-form').onsubmit = event => { event.preventDefault(); query = $('#search').value.trim(); page = 1; renderList(); };
   $('#search').oninput = () => { query = $('#search').value.trim(); page = 1; renderList(); };
   $('#reset').onclick = () => { query = ''; category = '전체'; topic = '전체'; expanded = ''; page = 1; $('#search').value = ''; renderCategories(); renderList(); $('#search').focus(); };
-  $('#refresh').onclick = load;
+  $('#refresh').onclick = () => load();
+  setInterval(() => { if (document.visibilityState === 'visible' && Date.now() - lastLoadAt >= refreshInterval) load(true); }, refreshInterval);
+  const refreshOnReturn = () => { if (document.visibilityState === 'visible' && Date.now() - lastLoadAt >= 60000) load(true); };
+  document.addEventListener('visibilitychange', refreshOnReturn);
+  window.addEventListener('focus', refreshOnReturn);
   load();
 })();
