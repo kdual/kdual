@@ -99,6 +99,7 @@
     }));
   }
   function renderList() {
+    $('.intake-card').hidden = category !== 'FAQ';
     const words = query.toLocaleLowerCase().split(/\s+/).filter(Boolean);
     const visible = entries.filter(entry => (category === '전체' || entry.category === category) && (topic === '전체' || entry.topic === topic) && words.every(word => `${entry.question} ${entry.answer} ${entry.category} ${entry.topic} ${entry.legacyCategory}`.toLocaleLowerCase().includes(word)));
     const label = category === '전체' ? '전체 질문' : topic === '전체' ? category : `${category} · ${topic}`;
