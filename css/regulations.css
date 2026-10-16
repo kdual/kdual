@@ -18,3 +18,12 @@
 .heading-art .format-note .format-description{padding:0;border:0;background:none;color:inherit;font:inherit;letter-spacing:0}
 .format-divider{display:block;width:1px;height:12px;background:#bdcfdf}
 @media(max-width:760px){.heading-art .format-note{gap:7px;min-height:25.8px;margin-top:6px}.heading-art .format-note>span{font-size:11px;gap:3px}.heading-art .format-note svg{width:13px;height:13px}.heading-art .format-note .format-description{display:none}}
+
+/* Keep the document list to five items and provide touch-friendly page controls. */
+.document-pagination{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:6px;margin-top:24px}
+.document-pagination[hidden]{display:none}
+.document-page-button{min-height:44px;min-width:44px;padding:9px 12px;border:1px solid var(--line);border-radius:7px;background:white;color:var(--ink);font-size:14px}
+.document-page-button[aria-current="page"]{background:var(--blue);color:white;border-color:var(--blue);font-weight:700}
+.document-page-button:disabled{opacity:.4;cursor:default}
+.document-page-gap{padding:0 3px;color:var(--muted)}
+@media(max-width:420px){.document-page-button{padding:9px 10px;font-size:13px}.list-heading{flex-wrap:wrap;gap:8px}#list-note{font-size:12px}}
