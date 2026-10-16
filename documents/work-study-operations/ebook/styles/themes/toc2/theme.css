@@ -1,0 +1,1186 @@
+/*********************************************************/
+/* © KIKI, Inc. All rights reserved.
+/* TOAST Viewer
+/* author : junghyen kim
+/* email : kiki@itoast.kr
+/* website : itoast.kr
+/*********************************************************/
+
+/*********************************************************/
+/* 테마 관련 less(CSS Preprocessor) 변수
+/*********************************************************/
+
+/* 배경 색상 */
+@bg-color:                        #d0d0d0;
+
+/* 시작메뉴 스타일 */
+@startmenu-bg-color:              #4387f8;
+@startmenu-icon-color:            #fff;
+@startmenu-active-icon-color:     #fff;
+@startmenu-box-shadow:            0 4px 11px rgba(0,0,0,0.3);
+@startmenu-active-bg-color:       #4387f8;
+
+/* 상.하단 바 배경 색상 */
+@bar-bg-color:                    #fff;
+@bar-box-shadow:                  0 0 5px rgba(0,0,0,.2);
+
+/* 활성화 상태일때 상단.하단 바 배경 색상 및 그림자 */
+@active-bar-bg-color:             #fff;
+@active-bar-box-shadow:           0 0 5px rgba(0,0,0,.2);
+
+/* 확대축소 배경 색상 */
+@zoom-bar-bg-color:               #fff;
+@zoom-bar-btn-bg-color:           #fff;
+@zoom-bar-btn-active-bg-color:    #4387f8;
+@zoom-bar-slider-bg-color:        #fff;
+
+/* 입력상자 관련 색상*/
+@input-bg-color:                  white;
+@input-active-bg-color:           white;
+@input-text-color:                #000;
+
+/* 버튼 색상 */
+@btn-active-bg-color:             #4387f8;
+
+/* 버튼 아이콘(SVG) 색상 */
+@btn-icon-color:                  #353535;
+@btn-icon-active-color:           white;
+
+/* 버튼 레이블 색상 */
+@btn-label-text-color:            white;
+@btn-label-text-active-color:     white;
+@btn-label-bg-color:              #4387f8;
+
+/* 페이지 네이게이트(처음,이전,다음,마지막, 페이지 레이블) */
+@pn-btn-bg-color:                 rgba(0, 0, 0, .25);
+@pn-btn-icon-color:               white;
+@pn-page-label-text-color:        white;
+@pn-page-label-bg-color:          rgba(0, 0, 0, .25);
+
+/* 북마크 활성화 색상 */
+@bookmark-icon-active-color:      red;
+
+/* 사이드(왼쪽, 오른쪽) 페이지 이전,다음 페이지 이동 버튼 */
+@side-pn-btn-icon-color:          #fff;
+@side-pn-btn-opacity:             0.25;
+@side-pn-btn-active-icon-color:   #fff;
+@side-pn-btn-active-opacity:      0.7;
+@side-pn-btn-bg-color:            #353535;
+@side-pn-btn-active-bg-color:     #353535;
+
+/* 썸네일(전체보기) */
+@thumbnail-bg-color:                       white;
+@thumbnail-btn-icon-color:                 #353535;
+@thumbnail-btn-active-icon-color:          #b6b6b6;
+@thumbnail-btn-active-bg-color:            transparent;
+
+/* 목차리스트, 보관함(패널) */
+@panel-heading-bg-color:                   white;
+@panel-heading-text-color:                 black; 
+@panel-heading-bottom-border-color:        #dddddd;
+@panel-heading-btn-icon-color:             black;
+
+/* 구분선 색상 */
+@divider-color:                            #ddd;
+
+/*********************************************************/
+
+/* 전역 */
+html, body {}
+.toast {
+  background-color: @bg-color; }
+
+/* 상단바 */
+.navbar {
+  height: 50px;
+  background: transparent;
+  z-index: 1000;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-transition: all 0.2s ease;
+      -ms-transition: all 0.2s ease;
+          transition: all 0.2s ease;
+}
+.navbar.hide {
+  display: block !important;
+  top: -60px;
+  opacity: 0;
+  -webkit-transition: all 0.2s ease;
+      -ms-transition: all 0.2s ease;
+          transition: all 0.2s ease;
+}
+.navbar .translucent {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: @bar-bg-color;
+  box-shadow: @bar-box-shadow;
+}
+.bookzoom-activate .navbar .translucent {
+  background: @active-bar-bg-color;
+  box-shadow: @active-bar-box-shadow;
+}
+.navbar-default {
+  border-width: 0; }
+.navbar-brand {
+  position: absolute;
+  height: 100%;
+  padding: 0;
+  width: 180px;
+  display: none;
+  overflow: hidden;
+}
+.navbar-brand span {
+  padding: 7px;
+  font-weight: bold;
+  font-size: 16px;
+  display: table-cell;
+  vertical-align: middle;
+  line-height: normal;
+  color: #000;
+}
+.navbar-brand img {
+  position: absolute;
+  display: table-cell;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  vertical-align: middle;
+}
+
+/* 컨테이너 */
+.toast .container-fluid {
+  padding-left: 0;
+  padding-right: 0;
+  height: 100%;
+}
+
+/* 하단바 */
+.controlbar {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 50px;
+  z-index: 5000;
+  left: 0px;
+  bottom: 0px;
+  background: transparent;
+  margin: 0;
+  text-align: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; }
+.controlbar.hide { 
+  display: block !important;
+  bottom: -60px;
+  opacity: 0;
+  -webkit-transition: all 0.2s ease;
+      -ms-transition: all 0.2s ease;
+          transition: all 0.2s ease; }
+.controlbar .translucent {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: @bar-bg-color;
+  box-shadow: @bar-box-shadow; }
+.bookzoom-activate .controlbar .translucent {
+  background: @active-bar-bg-color;
+  box-shadow: @active-bar-box-shadow; }
+.controlbar .btn-toolbar .btn {
+  margin-left: 0;
+  margin-right: 0; }
+
+/* 버튼 툴바 */ 
+.btn-toolbar {
+  text-align: center;
+  height: 100%;
+}
+.btn-toolbar .btn-group {
+  float: inherit;
+  height: 100%;
+}
+.btn-toolbar .pull-left {
+  position: absolute;
+  left: 0;
+  margin-left: 0; }
+.btn-toolbar .pull-right {
+  position: absolute;
+  right: 0; }
+
+/* 페이지 네비게이트 */
+.navigate {
+  position: relative;
+  margin-left: 0;
+  height: 100%; }
+.navigate .btn {
+  padding: 8px;
+  margin-left: 0;
+  margin-right: 0; }
+.navigate .btn.btn-pagelabel {
+  width: 90px;
+  margin-left: 15px;
+  margin-right: 15px;
+  padding: 0; }
+.navigate .btn.btn-pagelabel:active {
+  background: none; }
+.navigate .btn.btn-pagelabel > .label-group {
+  position: relative;
+  opacity: 1.0;
+  visibility: visible;
+  display: table;
+  width: 100%;
+  padding: 0;
+  top: 0;
+  height: 30px;
+  font-size: 15px;
+  font-weight: bold;
+  margin: 0 auto;
+  color: @pn-page-label-text-color;
+  background: @pn-page-label-bg-color;
+  border-radius: 20px;
+}
+
+.navigate .btn.btn-pagelabel > .label-group > .label-page {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.navigate .form-control.input-page {
+  position: absolute;
+  display: none;
+  width: 100%;
+  padding: 0;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: 20px;
+  font-size: 15px;
+  line-height: 25px;
+  text-align: center;
+  font-weight: bold;
+  color: @input-text-color;
+  background-color: @input-bg-color;
+  z-index: 100;
+}
+.navigate .form-control.input-page:active,
+.navigate .form-control.input-page:focus {
+  background-color: @input-active-bg-color; }
+.page-input-modal .modal-dialog {
+  max-width: 300px !important; }
+.navigate button.btn:hover,
+.navigate button.btn:active {
+  background: none !important;
+  box-shadow: none; }
+.navigate .btn[command] .icon {
+  padding: 5px; }
+.navigate .btn[command] .svg-icon {
+  fill: @pn-btn-icon-color; }
+.navigate button:not(.btn-pagelabel) > .icon {
+  background-repeat: no-repeat;
+  background-size: 60% 60%;
+  background-position: 50% 50%;
+  border-radius: 50%;
+  background-color: @pn-btn-bg-color; }
+.navigate button > .icon:active {
+  background-color: @btn-active-bg-color;
+  fill: @btn-icon-active-color; }
+.toast:not(.mobile) .navigate button > .icon:hover {
+  background-color: @btn-active-bg-color;
+  fill: @btn-icon-active-color; }
+
+/* 버튼 */
+.btn[command] {
+  width: 50px;
+  height: 100%;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 8px;
+  background: transparent;
+  border: 0;
+}
+.btn[command]:hover {
+  -webkit-transition: all 0.2s ease;
+          transition: all 0.2s ease;
+}
+.btn[command]:active {
+  background-color: rgba(0, 0, 0, 0.15);
+  box-shadow: none;
+}
+.btn[command].on,
+.btn[command].active {
+  box-shadow: none;
+  background: @btn-active-bg-color; }
+
+/* 버튼 아이콘 */
+.btn[command] .icon {
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1.0;
+  -webkit-transition: all 0.2s ease;
+      -ms-transition: all 0.2s ease;
+          transition: all 0.2s ease; }
+.btn[command] .icon.on {
+  display: none; }
+.btn[command].on .icon.on,
+.btn[command].active .icon.on,
+.open .btn[command] .icon {
+  display: inline-block; }
+.btn[command].on .icon.off,
+.btn[command].active .icon.off {
+  display: none; }
+.btn[command] .svg-icon {
+  fill: @btn-icon-color; }
+.btn[command].on .svg-icon,
+.btn[command].active .svg-icon,
+.open .btn[command] .svg-icon {
+  fill: @btn-icon-active-color; }
+
+.btn[command] .icon:hover {
+  opacity: 1.0; }
+.btn[command="toggleBookmark"].on {
+  background: transparent; }
+.btn[command="toggleBookmark"].on .icon.on {
+  fill: @bookmark-icon-active-color;}
+
+/* 버튼 레이블 */
+.btn[command] .label {
+  position: absolute;
+  left: 50%;
+  top: 45px;
+  font-size: 12px;  
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 2px;
+  padding-bottom: 3px;
+  line-height: inherit;
+  border-radius: 15px;
+  color: @btn-label-text-color;
+  background: @btn-label-bg-color;
+  opacity: 0.0;
+  -webkit-transition: all 0.2s ease;
+      -ms-transition: all 0.2s ease;
+          transition: all 0.2s ease;
+  -webkit-transform: translate(-50%, 0);
+      -ms-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+}
+.btn[command]:hover > .label {
+  opacity: 1.0;
+  visibility: visible;
+  -webkit-transition: all 0.2s ease;
+      -ms-transition: all 0.2s ease;
+          transition: all 0.2s ease;
+}
+.btn[command].on > .label,
+.btn[command].active > .label {
+  color: @btn-label-text-active-color;
+}
+.btn[command="toggleBookmark"].on > .label,
+.btn[command="toggleBookmark"].active > .label {
+  color: @btn-label-text-color;
+}
+.start-menu .btn[command]:hover > .label,
+.controlbar .btn[command]:hover > .label {
+  opacity: .0; }
+
+/* 시작메뉴 */
+.start-menu {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  height: 50px;
+  margin-left: 0;
+  padding: 5px;
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
+  border: 0;
+  z-index: 9000; }
+.start-menu.open,
+.start-menu:active {
+  background-color: @startmenu-active-bg-color; }
+.start-menu .start-menu-toggle {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  display: -webkit-flex;
+  display: flex;
+  border-radius: 50%;
+  background: @startmenu-bg-color;
+  box-shadow: @startmenu-box-shadow;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  -webkit-transition: all 0.1s ease-out;
+          transition: all 0.1s ease-out; }
+.toast:not(.mobile) .start-menu.animate-start-menu .start-menu-toggle:hover,
+.toast.landscape .start-menu.animate-start-menu .start-menu-toggle:hover {
+  -webkit-transform:scale(1.15);
+     -moz-transform:scale(1.15); 
+       -o-transform:scale(1.15);
+          transform:scale(1.15);
+}
+.toast:not(.mobile) .start-menu.animate-start-menu.open .start-menu-toggle,
+.toast.landscape .start-menu.animate-start-menu.open .start-menu-toggle {
+  box-shadow: none;
+  -webkit-transform:scale(1.25) rotate(225deg);
+     -moz-transform:scale(1.25) rotate(225deg); 
+       -o-transform:scale(1.25) rotate(225deg);
+          transform:scale(1.25) rotate(225deg);
+}
+
+.toast.mobile .start-menu.animate-start-menu.open .start-menu-toggle,
+.toast:not(.landscape) .start-menu.animate-start-menu.open .start-menu-toggle {
+  box-shadow: none;
+  -webkit-transform:rotate(225deg);
+     -moz-transform:rotate(225deg); 
+       -o-transform:rotate(225deg);
+          transform:rotate(225deg);
+}
+
+.start-menu .start-menu-toggle > .svg-icon {
+  fill: @startmenu-icon-color;
+}
+.start-menu.open .start-menu-toggle > .svg-icon,
+.start-menu:active .start-menu-toggle > .svg-icon {
+  fill: @startmenu-active-icon-color;
+}
+
+.start-menu > .start-menu-arrow:after {
+  position:absolute;
+  display: none;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  background-color: #fff;
+  outline: 0;
+  box-shadow: none;
+  border-right: #ddd solid 1px;
+  border-bottom: #ddd solid 1px;
+  top: -17px;
+  left: 15px;
+  content:'';
+  -webkit-transform:rotate(45deg);
+     -moz-transform:rotate(45deg);
+          transform:rotate(45deg);
+  z-index: 99999; }
+.start-menu.open > .start-menu-arrow:after {
+  display: block; }
+.start-menu .dropdown-menu {
+  left: 10px;
+  width: 224px;
+  background: #fff;
+  margin-left: -5px;
+  min-height: 100px;
+  padding: 20px;
+  text-align: left;
+  white-space: normal;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-color: rgba(0,0,0,.2);
+  color: #000;
+  outline: none; 
+  -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.2);
+          box-shadow: 0 2px 10px rgba(0,0,0,.2); }
+.start-menu li {
+  display: inline-block;
+  height: 88px;
+  width: 88px;
+  padding: 1px;
+  margin-bottom: 5px;
+  vertical-align: top;
+  overflow: hidden;
+  color: black;
+  z-index: 999;
+  text-align: center;
+  border-radius: 2px;
+  cursor: pointer;
+  background: none;
+}
+
+.start-menu li .box {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  color: #404040;
+  font-size: 13px;
+  padding: 2px;
+  text-align: center;
+  background: white;
+  border-radius: 2px;
+}
+
+
+.start-menu li:active,
+.start-menu li:hover {
+  background: #ddd; }
+
+.start-menu li .icon {
+  display: inline-block;
+  vertical-align: top;
+  height: 40px;
+  width: 40px;
+  margin-top: 10px;
+  left: inherit !important;
+}
+
+.start-menu li .menu-title {
+  display: block;
+  line-height: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  margin-top: 5px;
+  text-overflow: ellipsis;
+}
+.start-menu li.on .box,
+.start-menu li.active .box {
+  background: #ddd; }
+.start-menu li:not(.on):not(.active) .on {
+  display: none; }
+.start-menu li.on .on,
+.start-menu li.active .on {
+  display: inline-block; }
+.start-menu li.on .off,
+.start-menu li.active .off {
+  display: none; }
+.start-menu li .svg-icon {
+  fill: #363636; }
+.start-menu li[command="toggleBookmark"].on .icon.on {
+  fill: @bookmark-icon-active-color; }
+.toast.fullscreen .start-menu li[command=fullscreen],
+.toast.fullscreen .start-menu li[command=fullscreen] .box {
+  background: #ddd; }
+.toast.fullscreen .start-menu li[command=fullscreen] .svg-icon {
+  fill: #363636; }
+
+/* 자동 재생 슬라이드 */
+.toast .autoslide {
+  display: none;
+  margin: auto;
+  -webkit-transition: all 400ms ease;
+      -ms-transition: all 400ms ease;
+          transition: all 400ms ease;
+}
+
+/* 사이드 페이지 네비게이트 버튼 */
+.side-page-navigate-buttons {}
+.side-page-navigate-buttons .btn {
+  position: absolute;
+  top: 50%;
+  width: 36px;
+  height: 60px;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding: 0 !important;
+  font-size: 25px;
+  color: @side-pn-btn-icon-color;
+  background-color: @side-pn-btn-bg-color;
+  opacity: @side-pn-btn-opacity;
+  border-radius: 0;
+  z-index: 4999;
+  -webkit-transform: translate(0, -50%);
+      -ms-transform: translate(0, -50%);
+          transform: translate(0, -50%); }
+.side-page-navigate-buttons .btn .icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 56px;
+  height: 56px;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%); }
+.side-page-navigate-buttons .btn .svg-icon {
+  fill: @side-pn-btn-icon-color; }
+.side-page-navigate-buttons .btn:not([disabled="disabled"]):hover {
+  opacity: @side-pn-btn-active-opacity; }
+.side-page-navigate-buttons .btn:not([disabled="disabled"]):active {
+  color: @side-pn-btn-active-icon-color;
+  background-color: @side-pn-btn-active-bg-color; }
+.side-page-navigate-buttons .btn[disabled="disabled"] {
+  opacity: 0.0;
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; }
+.side-page-navigate-buttons .btn:active {
+  box-shadow: none; }
+.side-page-navigate-buttons .btn[command="previousPage"] {
+  left: -1px; }
+.side-page-navigate-buttons .btn[command="nextPage"] {
+  right: -1px;
+  float: right; }
+
+/* 북커버 배경 */
+.toast.has-book-bg .book-container {
+  left: 25px;
+  right: 25px;
+  top: 70px;
+  bottom: 70px; }
+.toast .book-container .book-bg {
+  display: none; }
+.toast.has-book-bg .book-container.cover .book-bg {
+  display: none !important; }
+.toast.has-book-bg .book-container:not(.cover) .book-bg  {
+  display: block; }
+
+/* 프린터 사용안함 */
+.toast.no-print [command="print"] {
+  display: none; }
+
+/* 공유하기 사용안함 */
+.toast.no-share [command="share"] {
+  display: none; }
+
+/* PDF 다운로드 사용안함 */
+.toast:not(.pdf-url) [command="pdfDownload"] {
+  display: none; }
+
+/* 메모 */
+.memo-icon {
+  position: absolute;
+  background-image: url('icons/memo-icon.svg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  cursor: pointer;
+}
+
+/* 전체 화면일때 */
+.toast.fullscreen [command=fullscreen],
+.toast.fullscreen [command=fullscreen] .box {
+  box-shadow: none;
+  background: @btn-active-bg-color; }
+.toast.fullscreen [command=fullscreen] .svg-icon {
+  fill: @btn-icon-active-color; }
+.toast.fullscreen [command=fullscreen] .label {
+  color: @btn-label-text-active-color; }
+
+/* 전체보기(썸네일 보기) */
+.toast-thumbnail {
+  background-color: @thumbnail-bg-color;
+  box-shadow: 0px -3px 6px rgba(0,0,0,0.15);
+}
+
+.toast-thumbnail .close {
+  color: @thumbnail-btn-icon-color;
+  background: @thumbnail-bg-color;
+  box-shadow: -1px -2px 2px 0px rgba(0,0,0,0.1), 1px -2px 2px 0px rgba(0,0,0,0.1);
+}
+.toast-thumbnail .lSSlideWrapper {
+  border-left: 1px solid @divider-color;
+  border-right: 1px solid @divider-color;
+}
+.toast-thumbnail .lSAction > a {
+  color: @thumbnail-btn-icon-color;
+}
+.toast-thumbnail .lSAction > a:active {
+  color: @thumbnail-btn-active-icon-color;
+  background-color: @thumbnail-btn-active-bg-color;
+}
+
+/* 패널(목차리스트, 보관함) */
+.panel > .panel-heading {
+  color: @panel-heading-text-color;
+  background: @panel-heading-bg-color;
+  border-bottom: 1px solid @panel-heading-bottom-border-color;
+}
+.panel > .panel-heading .btn {
+  color: @panel-heading-btn-icon-color;
+}
+
+/* 확대축소바 */
+.zoom-bar {}
+.zoom-bar .location-btn-group,
+.zoom-bar .form-group {
+  background: @zoom-bar-bg-color; }
+.zoom-bar .btn {
+  color: @btn-icon-color;
+  background: @zoom-bar-btn-bg-color; }
+.zoom-bar .btn:hover,
+.zoom-bar .btn:active {
+  background: @zoom-bar-btn-bg-color; }
+.zoom-bar .btn.active,
+.zoom-bar .btn.on {
+  color: @btn-icon-active-color;
+  background: @zoom-bar-btn-active-bg-color; }
+.zoom-bar .btn .svg-icon {
+  fill: @btn-icon-color; }
+.zoom-bar .btn.active .svg-icon,
+.zoom-bar .btn.on .svg-icon {
+  fill: @btn-icon-active-color; }
+.zoom-bar .divider {
+  background: @divider-color; }
+.zoom-bar .zoom-slider-wrap {
+  background: @zoom-bar-slider-bg-color; }
+  
+/* 모바일 전용 */
+.toast:not(.mobile) .mobile,
+.toast.mobile.landscape .mobile.portrait {
+  display: none !important; }
+.toast.mobile:not(.landscape) .landscape {
+  display: none !important; }
+
+/* 데스크탑 전용 */
+.toast.mobile .desktop {
+  display: none !important; }
+
+
+/* 디바이스 크기에 대응 */
+.navbar .btn-small-toolbar {
+  display: none; }
+.navbar .btn-small-toolbar .btn {
+  margin-left: 0px !important;
+  margin-right: 0px !important; }
+  
+@media (max-width: 1100px) {
+  .btn-share-toolbar { width: 100%; }
+}
+
+@media (max-width: 640px) {
+  .navbar .btn-toolbar {
+    display: none; }
+  .navbar .btn-small-toolbar {
+    display: inline-block; }
+  .navbar-brand {
+    display: table;
+    width: 150px;
+    left: 50%;
+    margin-left: -75px;
+    background: transparent;
+    text-align: center; }
+  .navbar-brand span {
+    display: none; }
+  .toast-thumbnail .panel-body .thumbnail {
+    margin: 5px; }
+}
+@media (max-width: 520px) {
+  .btn[command="toggleDoublePage"],
+  .btn[command="firstPage"],
+  .btn[command="lastPage"] {
+    display: none; }
+}
+@media (max-width: 500px) {
+  .share-modal-wrapper .modal-body .btn-group.btn-icon-group > .btn {
+    width: 33.3%; }
+}
+
+@media (min-width: 640px) {
+  .navbar .btn {
+    margin-left: 10px !important;
+    margin-right: 10px !important; }
+}
+@media (min-width: 900px) {
+  .navbar .btn {
+    margin-left: 25px !important;
+    margin-right: 25px !important; }
+}
+@media (min-width: 1100px) {
+  .navbar .btn {
+    margin-left: 30px !important;
+    margin-right: 30px !important; }
+}
+
+@media (min-width: 1280px) {
+  .navbar-brand {
+    display: table; }
+}
+
+
+
+
+/**
+ * 상단메뉴형 테마
+ */
+.toast.desktop {
+    
+  .navbar {
+    .navbar-brand {
+      display: none;
+    }
+    .translucent {
+      background: none;  
+      box-shadow: none;
+    }
+
+    .btn-toolbar {
+      min-width: 1400px;
+    }
+
+    .btn-toolbar:not(.btn-small-toolbar) {
+
+      position: absolute;
+      left: 50%;
+      right: auto;
+      -webkit-transform: translate(-50%, 0%);
+          -ms-transform: translate(-50%, 0%);
+              transform: translate(-50%, 0%);
+
+      > .btn-group {
+        position: relative;
+        padding-left: 10px;
+        padding-right: 10px;
+        
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        background: @bar-bg-color;
+        box-shadow: @bar-box-shadow;
+        z-index: 1; }
+
+      .btn-menubar-toggle {
+        position: absolute;
+        z-index: 0;
+        left: 50%;
+        width: 80px;
+        height: 40px;
+        bottom: -38px;
+        padding: 0;
+        margin-left: -40px !important; 
+        background: @bar-bg-color;
+        box-shadow: @bar-box-shadow;
+        border-bottom-left-radius: 25px !important;
+        border-bottom-right-radius: 25px !important;
+
+        -webkit-transition: all 0.2s ease;
+            -ms-transition: all 0.2s ease;
+                transition: all 0.2s ease;
+
+        .icon {
+          margin-top: 2px !important;
+          width: 36px;
+          height: 36px;
+        }
+        .icon.down {
+          display: none;
+        }
+      }
+
+    }/* btn-toolbar */
+
+    &.hide-menubar {
+      opacity: 1;
+      
+      .btn-menubar-toggle {
+        
+        .icon {
+          margin-top: 8px !important;
+        }
+        .icon.up {
+          display: none !important;
+        }
+        .icon.down {
+          display: inline-block !important;
+        }
+      }
+    }
+
+    .btn-group {
+      margin-left: 0;
+      margin-right: 0;
+      height: 100%;
+
+      > .btn:first-child {
+        margin-left: 0 !important; }
+      > .btn:last-child {
+        margin-right: 0 !important; }
+
+      &.navigate {
+        margin-left: 15px !important;
+        margin-right: 15px !important;
+
+        .btn:not(.btn-pagelabel) {
+          padding: 0;
+          width: 32px; }
+
+        .btn {
+          margin-left: 5px !important;
+          margin-right: 5px !important; }
+
+        .icon {
+          width: 28px;
+          height: 28px;
+          padding: 2px;
+          margin-top: 5px; }
+      }
+    }
+
+    .btn {
+      margin-left: 10px !important;
+      margin-right: 10px !important;
+      border-radius: 0 !important; }
+
+  }/* navbar */
+
+
+  .side-toc {
+    position: absolute;
+    right: auto;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    /*border-left: 1px solid #c6c6c6;
+    background: white;
+    box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.10);*/
+    
+    background-position: center;
+    background-size: cover;
+
+    .side-toc-header {
+      position: relative;
+      margin-top: -1px;
+      height: 60px;
+      
+      .navbar-brand {
+        position: relative;
+        
+        display: table;
+        width: 180px;
+        height: 60px;
+        margin-left: 0 !important;
+        text-align: center;
+      }
+    }
+
+    .side-toc-body {
+      position: absolute;
+      width: auto;
+      max-width: 250px;
+      top: 70px;
+      bottom: 70px;
+      overflow: auto;
+
+      ul {
+        padding-left: 0;
+        padding-right: 0;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-right: 5px;
+
+        li {
+          font-size: 15px;
+          font-weight: bold;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          padding-left: 15px;
+          padding-right: 15px;
+          margin-bottom: 5px;
+          background: #fff;
+          border-bottom: 1px solid #0000001f;
+          word-break: keep-all;
+          cursor: pointer;
+          /*border-top-right-radius: 20px;
+          border-bottom-right-radius: 20px;*/
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+        }
+
+        li.image-item {
+          padding: 5px;
+          background-color: transparent !important;
+          border: 0;
+          box-shadow: none;
+        }
+
+        li img { width: 100%; }
+      }
+    }
+
+    .side-toc-footer {
+      position: absolute;
+      width: 100%;
+      height: 50px;
+      bottom: 0;
+      
+      .btn-toolbar {
+        .btn-group.navigate {
+          width: auto;
+          margin-left: 0;
+          .btn {
+            margin-right: 0;
+            margin-left: 0;
+          }
+        }
+      }
+    }
+    
+  }
+}
+
+.desktop.cover,
+.desktop:not(.doublepage),
+.desktop.bookzoom-activate {
+  .navbar {
+    .btn-toolbar:not(.btn-small-toolbar) {
+      margin-left: 0;
+    }
+  }
+}
+
+.desktop.bookzoom-activate {
+  .side-toc {
+    display: none;
+  }
+  .side-page-navigate-buttons {
+    display: none;
+  }
+}
+
+.show-searchbar {
+  .navbar {
+    display: block !important;
+    top: -60px;
+    opacity: 0.0;
+    -webkit-transition: all 0.2s ease;
+        -ms-transition: all 0.2s ease;
+            transition: all 0.2s ease;
+  }
+}
+
+.desktop.bookzoom-activate .navbar .translucent {
+  background: none;
+  box-shadow: none;
+}
+
+/* 확대.축소바 */
+.desktop .zoom-bar {
+  width: 50px;
+  right: 30px;
+  opacity: 1.0;
+
+  #zoom-slider {
+    height: 100px;
+
+    > .handle-drag {
+      width: 50px;
+      height: 50px;
+      margin-left: -25px;
+      > .handle-drag-inner {
+        position: absolute;
+        cursor: pointer;
+        width: 38px;
+        height: 38px;
+        left: 6px;
+        top: 3px;
+        background: white;
+      }
+    }
+  }
+}
+
+.zoom-bar {
+
+  .form-group {
+    background: none;
+    box-shadow: none; }
+  .zoom-slider-wrap {
+    margin-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 25px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.35);
+  }
+  #zoom-slider {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .form-group {
+    .btn {
+      left: 50%;
+      -webkit-transform: translate(-50%, 0);
+        -moz-transition: translate(-50%, 0);
+          -ms-transform: translate(-50%, 0);
+              transform: translate(-50%, 0);
+
+      font-size: 16px;
+      width: 50px;
+      height: 50px;
+      padding: 6px 0;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.35);
+    }
+    .btn:first-child,
+    .btn:not(:last-child) {
+      margin-bottom: 10px;
+    }
+        
+    .btn .label {
+      width: 100%;
+      margin-left: -2px;
+      color: @btn-label-text-color;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  }
+}
+
+/* 사이드 페이지 네비게이션 */
+.side-page-navigate-buttons {}
+.desktop .side-page-navigate-buttons {
+  
+  .btn {
+    top: auto;
+    bottom: 10px;
+    -webkit-transform: none;
+        -ms-transform: none;
+            transform: none;  
+  }
+  
+  .btn[command="previousPage"] {
+    left: -36px;
+  }
+  .btn[command="nextPage"] {
+    right: -36px;
+  }
+}
+
+/* 하단컨트롤바 */
+.desktop .controlbar {
+  display: none; }
+
+/* 북컨네이너 */
+.desktop .book-container {
+  top: 15px;
+  left: 36px;
+  right: 91px;
+  bottom: 15px; }
+
+.bookzoom-activate .book-container {
+  left: 0;
+  right: 0; }
+
+/* 시작메뉴 */
+.desktop .start-menu {
+  left: auto;
+  right: 10px;
+  top: 10px; }
+.desktop .start-menu > .start-menu-arrow:after {
+  border-right: 0;
+  border-bottom: 0;
+  border-left: #ddd solid 1px;
+  border-top: #ddd solid 1px;
+  top: auto;
+  bottom: -10px;
+  left: 14px; }
+.desktop .start-menu .dropdown-menu {
+  width: 224px;
+  left: auto;
+  right: 0;
+  bottom: auto;
+  height: auto;
+  margin-top: 5px; }
+
+/* 반응형 */
+.desktop {
+  @media (max-width: 640px) {
+    .navbar .btn-toolbar {
+      display: block; }
+    .navbar .btn-small-toolbar {
+      display: none; }
+  }  
+}

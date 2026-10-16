@@ -1,0 +1,32 @@
+
+<div class="zoom-bar">
+  <div class="translucent" />
+  
+  <div class="form-group">
+    <button type="button" data-drag-mode="true" title="{{Strings.DRAG_MODE}}" class="btn btn-zoombar-drag-mode active">
+      <span class="fa fa-hand-paper-o"></span>
+    </button>
+    
+    <button type="button" title="+10%" class="btn btn-zoombar-plus">
+      <span class="fa fa-plus"></span>
+    </button>
+    <div class="zoom-slider-wrap">
+      <div id="zoom-slider">
+        <div class="vertical-bar">
+            <div class="vertical-line"></div>
+        </div>
+        <div class="handle-drag">
+            <div class="handle-drag-inner"></div>
+            <span class="value"></span>
+        </div>
+      </div>
+    </div>
+    <button type="button" title="-10%" class="btn btn-bottom btn-zoombar-minus">
+      <span class="fa fa-minus"></span>
+    </button>
+
+    <button type="button" title="{{Strings.EXIT_ZOOM_MODE}}" class="btn btn-bottom btn-zoombar-exit fa fa-times">
+    </button>
+  </div>
+
+</div>
