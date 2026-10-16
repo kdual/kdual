@@ -9,6 +9,42 @@
       "ebookUrl": "documents/contract-department-manual/ebook/index.html",
       "published": true,
       "fileName": "계약학과 운영 매뉴얼.pdf"
+    },
+    {
+      "id": "work-study-law-18425",
+      "title": "산업현장 일학습병행 지원에 관한 법률",
+      "category": "일학습병행",
+      "description": "법률 제18425호",
+      "revisedDate": "2021-08-17",
+      "effectiveDate": "2022-02-18",
+      "pdfUrl": "documents/work-study-laws/산업현장 일학습병행 지원에 관한 법률(법률)(제18425호)(20220218)(1).pdf",
+      "ebookUrl": "",
+      "published": true,
+      "fileName": "산업현장 일학습병행 지원에 관한 법률(법률)(제18425호)(20220218)(1).pdf"
+    },
+    {
+      "id": "work-study-law-decree-36055",
+      "title": "산업현장 일학습병행 지원에 관한 법률 시행령",
+      "category": "일학습병행",
+      "description": "대통령령 제36055호",
+      "revisedDate": "2026-01-27",
+      "effectiveDate": "2026-02-01",
+      "pdfUrl": "documents/work-study-laws/산업현장 일학습병행 지원에 관한 법률 시행령(대통령령)(제36055호)(20260201).pdf",
+      "ebookUrl": "",
+      "published": true,
+      "fileName": "산업현장 일학습병행 지원에 관한 법률 시행령(대통령령)(제36055호)(20260201).pdf"
+    },
+    {
+      "id": "work-study-law-rule-291",
+      "title": "산업현장 일학습병행 지원에 관한 법률 시행규칙",
+      "category": "일학습병행",
+      "description": "고용노동부령 제291호",
+      "revisedDate": "2020-08-28",
+      "effectiveDate": "2020-08-28",
+      "pdfUrl": "documents/work-study-laws/산업현장 일학습병행 지원에 관한 법률 시행규칙(고용노동부령)(제00291호)(20200828).pdf",
+      "ebookUrl": "",
+      "published": true,
+      "fileName": "산업현장 일학습병행 지원에 관한 법률 시행규칙(고용노동부령)(제00291호)(20200828).pdf"
     }
   ]
 }
