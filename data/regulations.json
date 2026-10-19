@@ -9,7 +9,8 @@
       "ebookUrl": "documents/contract-department-manual/ebook/index.html",
       "published": true,
       "fileName": "계약학과 운영 매뉴얼.pdf",
-      "publicationDate": "2023-05"
+      "publicationDate": "2023-05",
+      "documentType": "매뉴얼"
     },
     {
       "id": "work-study-law-18425",
@@ -21,7 +22,8 @@
       "pdfUrl": "documents/work-study-laws/산업현장 일학습병행 지원에 관한 법률(법률)(제18425호)(20220218)(1).pdf",
       "ebookUrl": "",
       "published": true,
-      "fileName": "산업현장 일학습병행 지원에 관한 법률(법률)(제18425호)(20220218)(1).pdf"
+      "fileName": "산업현장 일학습병행 지원에 관한 법률(법률)(제18425호)(20220218)(1).pdf",
+      "documentType": "법령"
     },
     {
       "id": "work-study-law-decree-36055",
@@ -33,7 +35,8 @@
       "pdfUrl": "documents/work-study-laws/산업현장 일학습병행 지원에 관한 법률 시행령(대통령령)(제36055호)(20260201).pdf",
       "ebookUrl": "",
       "published": true,
-      "fileName": "산업현장 일학습병행 지원에 관한 법률 시행령(대통령령)(제36055호)(20260201).pdf"
+      "fileName": "산업현장 일학습병행 지원에 관한 법률 시행령(대통령령)(제36055호)(20260201).pdf",
+      "documentType": "법령"
     },
     {
       "id": "work-study-law-rule-291",
@@ -45,7 +48,8 @@
       "pdfUrl": "documents/work-study-laws/산업현장 일학습병행 지원에 관한 법률 시행규칙(고용노동부령)(제00291호)(20200828).pdf",
       "ebookUrl": "",
       "published": true,
-      "fileName": "산업현장 일학습병행 지원에 관한 법률 시행규칙(고용노동부령)(제00291호)(20200828).pdf"
+      "fileName": "산업현장 일학습병행 지원에 관한 법률 시행규칙(고용노동부령)(제00291호)(20200828).pdf",
+      "documentType": "법령"
     },
     {
       "id": "work-study-operations-regulation-20251229",
@@ -56,7 +60,8 @@
       "pdfUrl": "documents/work-study-operations/(251229) 일학습병행 운영규정 일부개정 전문.pdf",
       "ebookUrl": "",
       "published": true,
-      "fileName": "(251229) 일학습병행 운영규정 일부개정 전문.pdf"
+      "fileName": "(251229) 일학습병행 운영규정 일부개정 전문.pdf",
+      "documentType": "고시"
     },
     {
       "id": "work-study-operations-rules-20251226",
@@ -67,7 +72,8 @@
       "pdfUrl": "documents/work-study-operations/(251226) 일학습병행 운영규칙 일부개정 전문.pdf",
       "ebookUrl": "",
       "published": true,
-      "fileName": "(251226) 일학습병행 운영규칙 일부개정 전문.pdf"
+      "fileName": "(251226) 일학습병행 운영규칙 일부개정 전문.pdf",
+      "documentType": "운영규칙"
     },
     {
       "id": "work-study-center-rules-20251226",
@@ -78,7 +84,8 @@
       "pdfUrl": "documents/work-study-operations/(251226) 일학습병행 공동훈련센터 운영규칙(1).pdf",
       "ebookUrl": "",
       "published": true,
-      "fileName": "(251226) 일학습병행 공동훈련센터 운영규칙(1).pdf"
+      "fileName": "(251226) 일학습병행 공동훈련센터 운영규칙(1).pdf",
+      "documentType": "운영규칙"
     },
     {
       "id": "work-study-operations-manual-202511",
@@ -89,7 +96,8 @@
       "ebookUrl": "documents/work-study-operations/ebook/index.html",
       "published": true,
       "fileName": "(251110) 일학습병행 운영매뉴얼(1).pdf",
-      "publicationDate": "2025-11"
+      "publicationDate": "2025-11",
+      "documentType": "매뉴얼"
     },
     {
       "id": "contract-department-regulations-2025-40",
@@ -101,7 +109,8 @@
       "pdfUrl": "documents/contract-department-regulations/계약학과 설치·운영 규정(교육부고시)(제2025-40호)(20251224).pdf",
       "ebookUrl": "",
       "published": true,
-      "fileName": "계약학과 설치·운영 규정(교육부고시)(제2025-40호)(20251224).pdf"
+      "fileName": "계약학과 설치·운영 규정(교육부고시)(제2025-40호)(20251224).pdf",
+      "documentType": "고시"
     }
   ]
 }
