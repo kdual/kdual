@@ -40,6 +40,13 @@
     try { const url = new URL(address); return ['https:', 'http:'].includes(url.protocol) ? url.href : null; }
     catch { return null; }
   }
+  function updatedTime(value) {
+    const match = String(value || '').trim().match(/^(\d{4})\s*[-./년]\s*(\d{1,2})\s*[-./월]\s*(\d{1,2})(?:\s*[.일])?(?:$|[T\s])/);
+    if (!match) return -Infinity;
+    const [, year, month, day] = match.map(Number);
+    const date = new Date(Date.UTC(year, month - 1, day));
+    return date.getUTCFullYear() === year && date.getUTCMonth() === month - 1 && date.getUTCDate() === day ? date.getTime() : -Infinity;
+  }
   function normalizeEntry(entry) {
     // The existing Apps Script publishes column B. The sheet joins the new
     // main/subtopic inputs there, without changing its original A:H schema.
@@ -178,7 +185,8 @@
           : `저장된 자료 표시${synced && !Number.isNaN(synced.getTime()) ? ` · 최근 동기화 ${synced.toLocaleString('ko-KR', {month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit'})}` : ''}`;
       }
       const nextEntries = result.filter(entry => entry && typeof entry.question === 'string' && entry.question.trim() && typeof entry.answer === 'string' && entry.answer.trim()).map(normalizeEntry);
-      nextEntries.sort((a, b) => Number(b.pinned) - Number(a.pinned) || String(b.updated || '').localeCompare(String(a.updated || '')));
+      // Newest revision first; equal or missing dates retain the sheet's order.
+      nextEntries.sort((a, b) => updatedTime(b.updated) - updatedTime(a.updated) || 0);
       changed = JSON.stringify(entries) !== JSON.stringify(nextEntries);
       entries = nextEntries;
       $('#status').className = '';
