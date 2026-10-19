@@ -17,6 +17,7 @@
       const span = element.ownerDocument.createElement('span');
       span.textContent = text.slice(run.start, run.end);
       if (typeof run.bold === 'boolean') span.style.fontWeight = run.bold ? '700' : '400';
+      if (typeof run.underline === 'boolean') span.style.textDecorationLine = run.underline ? 'underline' : 'none';
       if (color(run.color)) span.style.color = run.color;
       fragment.append(span);
     }
