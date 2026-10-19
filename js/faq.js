@@ -111,13 +111,17 @@
       const detail = node('details'), summary = node('summary'), wrap = node('div'), meta = node('div', 'meta');
       meta.append(node('span', '', [entry.category, entry.topic || entry.legacyCategory].filter(Boolean).join(' · ')));
       if (entry.pinned) meta.append(node('span', 'pin', '중요'));
-      wrap.append(meta, node('span', 'question-title', entry.question));
+      const questionText = node('span', 'question-title', entry.question);
+      if (window.FaqRichText) window.FaqRichText.render(questionText, entry.question, entry.questionFormat);
+      wrap.append(meta, questionText);
       const plus = node('span', 'plus', '전체 보기'); plus.setAttribute('aria-hidden', 'true');
       detail.addEventListener('toggle', () => { plus.textContent = detail.open ? '접기' : '전체 보기'; });
       summary.append(node('span', 'q', 'Q'), wrap, plus);
       const answer = node('div', 'answer'), answerContent = node('div', 'answer-content');
       const answerLetter = node('span', 'a', 'A'); answerLetter.setAttribute('aria-hidden', 'true');
-      answerContent.append(node('p', 'answer-label', '답변'), node('p', 'answer-text', entry.answer));
+      const answerText = node('p', 'answer-text', entry.answer);
+      if (window.FaqRichText) window.FaqRichText.render(answerText, entry.answer, entry.answerFormat);
+      answerContent.append(node('p', 'answer-label', '답변'), answerText);
       answer.append(answerLetter, answerContent);
       const link = safeLink(entry.link);
       if (link) { const anchor = node('a', 'answer-link', '관련 자료 보기 ↗'); anchor.href = link; anchor.target = '_blank'; anchor.rel = 'noopener noreferrer'; answerContent.append(anchor); }
