@@ -1,6 +1,6 @@
 {
   "ok": true,
-  "syncedAt": "2026-10-19T08:05:59.605879+00:00",
+  "syncedAt": "2026-10-19T08:13:05.784463+00:00",
   "items": [
     {
       "id": "sample-09",
@@ -17,6 +17,7 @@
             "start": 0,
             "end": 713,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -28,6 +29,7 @@
             "start": 0,
             "end": 79,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -48,6 +50,7 @@
             "start": 0,
             "end": 65,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -59,6 +62,7 @@
             "start": 0,
             "end": 129,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -79,6 +83,7 @@
             "start": 0,
             "end": 38,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -90,6 +95,7 @@
             "start": 0,
             "end": 71,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -110,6 +116,7 @@
             "start": 0,
             "end": 120,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -121,6 +128,7 @@
             "start": 0,
             "end": 51,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -141,6 +149,7 @@
             "start": 0,
             "end": 139,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -152,6 +161,7 @@
             "start": 0,
             "end": 134,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -172,6 +182,7 @@
             "start": 0,
             "end": 94,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -183,6 +194,7 @@
             "start": 0,
             "end": 44,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -203,6 +215,7 @@
             "start": 0,
             "end": 118,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -214,6 +227,7 @@
             "start": 0,
             "end": 27,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -234,6 +248,7 @@
             "start": 0,
             "end": 121,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -245,6 +260,7 @@
             "start": 0,
             "end": 146,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -265,6 +281,7 @@
             "start": 0,
             "end": 43,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -276,6 +293,7 @@
             "start": 0,
             "end": 63,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -296,6 +314,7 @@
             "start": 0,
             "end": 295,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -307,6 +326,7 @@
             "start": 0,
             "end": 506,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -327,6 +347,7 @@
             "start": 0,
             "end": 167,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -338,6 +359,7 @@
             "start": 0,
             "end": 175,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -358,6 +380,7 @@
             "start": 0,
             "end": 55,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ],
@@ -370,6 +393,7 @@
             "start": 0,
             "end": 81,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ],
@@ -391,6 +415,7 @@
             "start": 0,
             "end": 103,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -402,6 +427,7 @@
             "start": 0,
             "end": 129,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -422,6 +448,7 @@
             "start": 0,
             "end": 95,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ],
@@ -434,6 +461,7 @@
             "start": 0,
             "end": 92,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ],
@@ -455,6 +483,7 @@
             "start": 0,
             "end": 53,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -466,6 +495,7 @@
             "start": 0,
             "end": 51,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -486,6 +516,7 @@
             "start": 0,
             "end": 118,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -497,6 +528,7 @@
             "start": 0,
             "end": 159,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -517,6 +549,7 @@
             "start": 0,
             "end": 29,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -528,6 +561,7 @@
             "start": 0,
             "end": 139,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -548,6 +582,7 @@
             "start": 0,
             "end": 130,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -559,6 +594,7 @@
             "start": 0,
             "end": 195,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -579,6 +615,7 @@
             "start": 0,
             "end": 176,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -590,6 +627,7 @@
             "start": 0,
             "end": 207,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -610,6 +648,7 @@
             "start": 0,
             "end": 138,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -621,6 +660,7 @@
             "start": 0,
             "end": 79,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -641,6 +681,7 @@
             "start": 0,
             "end": 108,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -652,6 +693,7 @@
             "start": 0,
             "end": 191,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -672,6 +714,7 @@
             "start": 0,
             "end": 45,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -683,30 +726,35 @@
             "start": 0,
             "end": 47,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           },
           {
             "start": 47,
             "end": 135,
             "bold": true,
+            "underline": false,
             "color": "#000000"
           },
           {
             "start": 135,
             "end": 152,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           },
           {
             "start": 152,
             "end": 251,
             "bold": true,
+            "underline": false,
             "color": "#000000"
           },
           {
             "start": 251,
             "end": 327,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -727,6 +775,7 @@
             "start": 0,
             "end": 66,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -738,6 +787,7 @@
             "start": 0,
             "end": 184,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -758,6 +808,7 @@
             "start": 0,
             "end": 31,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -769,6 +820,7 @@
             "start": 0,
             "end": 130,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -789,6 +841,7 @@
             "start": 0,
             "end": 29,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -800,6 +853,7 @@
             "start": 0,
             "end": 394,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -812,7 +866,7 @@
       "answer": "○ PDMS 전산시스템을 활용하여 신청 접수 및 검토, 승인 절차가 진행됩니다. 전산 화면은 기업현장교사 경력관리제 승급심사 전산 가이드를 참고해 주시기 바랍니다.\n\n[기업현장교사 경력관리제 승급/갱신 심사 절차]\n1. 승급/갱신 신청: (기업현장교사) 희망자가 직접 승급 신청\n2. 요건 검토: (관할 지부·지사) 자격요건 충족 여부 검토\n3. 등급 승인: (관할 지부·지사) 승급심사 결과 확정\n4. 결과 조회: (기업현장교사) 승급심사 결과 및 등급 확인\n※ 해당 자료는 2026년 3분기 기준입니다.\n\n[출처] 한국산업인력공단, 「2026년 3분기 일학습병행 기업현장교사 경력관리제 승급심사 운영 알림」(2026. 9. 2.)",
       "pinned": false,
       "updated": "2026. 9. 2",
-      "link": "",
+      "link": "https://drive.google.com/drive/folders/1xhrGpgHj3JDHeYHIXSXYkKF-6JgcGraG?usp=drive_link",
       "questionFormat": {
         "text": "일학습병행 기업현장교사 승급심사 절차가 어떻게 되나요?",
         "runs": [
@@ -820,6 +874,7 @@
             "start": 0,
             "end": 30,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -831,6 +886,7 @@
             "start": 0,
             "end": 354,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -843,7 +899,7 @@
       "answer": "○ OJT 및 Off-JT 중 어느 하나라도 실시한 달에 한하여 지급됩니다. 훈련 실시는 학습근로자가 정규 훈련에 참여(출석)한 경우로 한하여 정액을 지급합니다.\n○ 다만, 훈련과정 첫 달의 훈련시작일이 해당 달의 첫 날(1일)이 아닌 경우 학습근로자의 훈련과정 첫 달에는 훈련장려금 지급이 불가합니다.\n* 참고사항: 훈련시작일은 훈련실시신고 기간의 첫 날을 의미하고, 일학습병행 훈련과정의 최초 훈련시작일이 HRD-Net 훈련실시신고 기간의 첫 날과 일치해야 합니다.\n\n[출처] '일학습병행 훈련장려금 지급기준' (한국산업인력공단, 「일학습병행 운영규칙 일부개정 알림」(2025. 9. 3.) 공문 붙임 파일)",
       "pinned": false,
       "updated": "2025. 9. 3",
-      "link": "",
+      "link": "https://drive.google.com/file/d/1MYx0BO2jzMm0G3xPnyd-8m_FCYjBOsb9/view?usp=sharing",
       "questionFormat": {
         "text": "OJT 및 Off-JT 둘 다 실시한 달에만 훈련장려금이 지급되나요?",
         "runs": [
@@ -851,6 +907,7 @@
             "start": 0,
             "end": 38,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -862,6 +919,7 @@
             "start": 0,
             "end": 342,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -874,7 +932,7 @@
       "answer": "[현장적응지원금]\n1. 집행항목: 재학생단계(전문대, 4년제대) 학습근로자의 훈련 적응 지원을 위해 공동훈련센터 정부지원금으로 직접 지급되는 지원금으로 집행기준에 의거 집행한다.\n2. 집행기준: 학습근로자 1인당 사업연도 내 월 10만 원, 최대 120만 원을 지원한다.(당해 사업연도 훈련실시기간*10만 원)\n* 위 집행기준에서 훈련실시기간이라 함은 훈련실시 신고 시 승인된 훈련기간(시작일~종료일) 중 해당 사업연도 내 기간을 말함\n* 예시: 재학생단계 사업년도(3월~다음 해 2월) 내 훈련실시기간 12개월*10만 원\n\n[출처] 한국산업인력공단, 「2026년 일학습병행 공동훈련센터 정부지원금 지원 및 집행기준 개정 수정 알림」(2025. 11. 12.)",
       "pinned": false,
       "updated": "2025. 11. 12",
-      "link": "",
+      "link": "https://drive.google.com/file/d/1FAiXko061fpeShGfEjP7ST1bFFVThkYG/view?usp=sharing",
       "questionFormat": {
         "text": "현장적응지원금 집행기준 중 훈련실시기간을 산정하는 기준이 어떤 건가요?",
         "runs": [
@@ -882,6 +940,7 @@
             "start": 0,
             "end": 39,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -893,6 +952,7 @@
             "start": 0,
             "end": 369,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -913,6 +973,7 @@
             "start": 0,
             "end": 41,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
@@ -924,6 +985,7 @@
             "start": 0,
             "end": 403,
             "bold": false,
+            "underline": false,
             "color": "#000000"
           }
         ]
