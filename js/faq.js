@@ -25,13 +25,14 @@
     pagination.replaceChildren(); pagination.hidden = total === 0;
     const add = (label, target, disabled = false) => {
       const button = node('button', 'faq-page-button', label); button.type = 'button'; button.disabled = disabled;
+      if (/^\d/.test(label)) button.setAttribute('aria-label', `${label}페이지`);
       if (target === page && /^\d/.test(label)) button.setAttribute('aria-current', 'page');
       button.onclick = () => { page = target; renderList(); $('#list-title').focus({preventScroll: true}); $('#list-title').scrollIntoView({block: 'start', behavior: 'auto'}); };
       pagination.append(button);
     };
     add('이전', page - 1, page === 1);
     const numbers = [...new Set([1, ...Array.from({length: 5}, (_, i) => page - 2 + i).filter(n => n > 0 && n <= pages), pages])].sort((a, b) => a - b);
-    numbers.forEach((number, index) => { if (index && number - numbers[index - 1] > 1) pagination.append(node('span', 'faq-page-gap', '…')); add(`${number}페이지`, number); });
+    numbers.forEach((number, index) => { if (index && number - numbers[index - 1] > 1) pagination.append(node('span', 'faq-page-gap', '…')); add(String(number), number); });
     add('다음', page + 1, page === pages);
   }
   function safeLink(value) {

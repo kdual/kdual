@@ -11,12 +11,13 @@ function renderPagination(total,pages){
  pagination.replaceChildren();pagination.hidden=total===0;
  const add=(label,target,disabled=false)=>{
   const b=make('button','document-page-button',label);b.type='button';b.disabled=disabled;
+  if(/^\d/.test(label))b.setAttribute('aria-label',label+'페이지');
   if(target===page&&/^\d/.test(label))b.setAttribute('aria-current','page');
   b.onclick=()=>{page=target;render();$('#list-title').focus({preventScroll:true});$('#list-title').scrollIntoView({block:'start',behavior:'auto'});};pagination.append(b);
  };
  add('이전',page-1,page===1);
  const numbers=[...new Set([1,...Array.from({length:5},(_,i)=>page-2+i).filter(n=>n>0&&n<=pages),pages])].sort((a,b)=>a-b);
- numbers.forEach((n,i)=>{if(i&&n-numbers[i-1]>1)pagination.append(make('span','document-page-gap','…'));add(n+'페이지',n);});
+ numbers.forEach((n,i)=>{if(i&&n-numbers[i-1]>1)pagination.append(make('span','document-page-gap','…'));add(String(n),n);});
  add('다음',page+1,page===pages);
 }
 function render(){
